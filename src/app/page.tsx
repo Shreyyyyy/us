@@ -1,69 +1,179 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { UserRole, SongTrack } from "@/types";
+import BackgroundStars from "@/components/BackgroundStars";
+import HeaderNav from "@/components/HeaderNav";
+import HeroSection from "@/components/HeroSection";
+import GfQuestionHub from "@/components/GfQuestionHub";
+import BfQuestionHub from "@/components/BfQuestionHub";
+import SharedVault from "@/components/SharedVault";
+import SoundtrackSection from "@/components/SoundtrackSection";
+import AiMatrixSection from "@/components/AiMatrixSection";
+import LoreTimeline from "@/components/LoreTimeline";
+import OpenWhenVault from "@/components/OpenWhenVault";
+import CareChecklist from "@/components/CareChecklist";
+import TerminalCLI from "@/components/TerminalCLI";
+import FutureRoadmap from "@/components/FutureRoadmap";
+import ForbiddenProtocol from "@/components/ForbiddenProtocol";
+import AudioModal from "@/components/AudioModal";
+import Toast from "@/components/Toast";
+import { Heart, Sparkles, Wand2 } from "lucide-react";
+import { sound } from "@/lib/sound";
 
 export default function Home() {
+  const [role, setRole] = useState<UserRole>("gf");
+  const [mounted, setMounted] = useState(false);
+  const [activeTrack, setActiveTrack] = useState<SongTrack | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastType, setToastType] = useState<"spell" | "reminder" | "success" | "info">("spell");
+
+  useEffect(() => {
+    setMounted(true);
+    try {
+      const savedRole = localStorage.getItem("relationship_role") as UserRole;
+      if (savedRole && (savedRole === "gf" || savedRole === "bf" || savedRole === "together")) {
+        setRole(savedRole);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const handleRoleChange = (newRole: UserRole) => {
+    setRole(newRole);
+    try {
+      localStorage.setItem("relationship_role", newRole);
+    } catch {
+      // ignore
+    }
+  };
+
+  const showNotification = (
+    msg: string,
+    type: "spell" | "reminder" | "success" | "info" = "spell"
+  ) => {
+    setToastMessage(msg);
+    setToastType(type);
+    clearTimeout((window as unknown as { toastTimeout?: number }).toastTimeout);
+    (window as unknown as { toastTimeout?: number }).toastTimeout = window.setTimeout(() => {
+      setToastMessage(null);
+    }, 5000);
+  };
+
+  const handleRandomReminder = () => {
+    const reminders = [
+      "In case your neural networks are stuck debugging: your girlfriend loves you immensely.",
+      "You are my sunshine, my laddoo, my bhalu. Never forget that.",
+      "Travelling miles on the metro just to sit together for an hour—that memory lives in my heart forever.",
+      "Kanha ji is always protecting us. You are never alone in any battle.",
+      "Divija protocol: Go drink a glass of water, relax your jaw, and stretch your neck, AI genius."
+    ];
+    const picked = reminders[Math.floor(Math.random() * reminders.length)];
+    showNotification(picked, "reminder");
+  };
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-[#07050d] text-white flex items-center justify-center font-serif text-xl">
+        <div className="flex items-center gap-3">
+          <Sparkles className="w-6 h-6 text-pink-400 animate-spin" />
+          <span>Calibrating Shrey × Divija Universe...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="relative min-h-screen selection:bg-pink-500/30 selection:text-pink-100">
+      {/* Background Animated Stardust */}
+      <BackgroundStars />
+
+      {/* Sticky Header with Role Switcher & Audio FX */}
+      <HeaderNav
+        role={role}
+        onRoleChange={handleRoleChange}
+        onTriggerSpell={(msg) => showNotification(msg, "spell")}
+      />
+
+      <div className="relative z-10 px-4 sm:px-6 max-w-6xl mx-auto space-y-16 pb-24">
+        {/* Hero Section */}
+        <HeroSection
+          role={role}
+          onCastSpell={(msg) => showNotification(msg, "spell")}
+          onReminder={handleRandomReminder}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+        {/* Dynamic Question Hub Anchor */}
+        <section id="questions" className="scroll-mt-24">
+          {role === "gf" && <GfQuestionHub onNotify={showNotification} />}
+          {role === "bf" && <BfQuestionHub onNotify={showNotification} />}
+          {role === "together" && (
+            <div className="space-y-12">
+              <SharedVault onNotify={showNotification} />
+              <div className="pt-6 border-t border-white/10 space-y-12">
+                <GfQuestionHub onNotify={showNotification} />
+                <BfQuestionHub onNotify={showNotification} />
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* Shared Vault Telemetry if in GF or BF mode */}
+        {role !== "together" && (
+          <section className="pt-4">
+            <SharedVault onNotify={showNotification} />
+          </section>
+        )}
+
+        {/* AI Neural Weights Section */}
+        <AiMatrixSection onNotify={showNotification} />
+
+        {/* Soundtrack Section */}
+        <SoundtrackSection
+          onPlayTrack={(track) => setActiveTrack(track)}
+          activeTrackId={activeTrack?.id || null}
+        />
+
+        {/* Lore & Timeline */}
+        <LoreTimeline />
+
+        {/* Open When Letters */}
+        <OpenWhenVault />
+
+        {/* Daily Maintenance Checklist */}
+        <CareChecklist onNotify={showNotification} />
+
+        {/* Interactive CLI Terminal */}
+        <TerminalCLI />
+
+        {/* Future Roadmaps */}
+        <FutureRoadmap />
+
+        {/* Forbidden Protocol Button */}
+        <ForbiddenProtocol />
+
+        {/* Footer */}
+        <footer className="text-center pt-12 pb-6 border-t border-white/10 text-xs text-zinc-400 space-y-2 font-sans">
+          <div className="flex items-center justify-center gap-1.5 text-pink-400 text-sm">
+            <Heart className="w-4 h-4 fill-current" />
+            <span className="font-serif">Engineered with endless devotion for Shrey & Divija</span>
+          </div>
+          <p className="text-[11px] text-zinc-500 font-mono">
+            Model weights frozen forever. Zero updates, zero rollbacks. Kanha ji protected 🦚🔒
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </footer>
+      </div>
+
+      {/* Embedded YouTube Audio/Video Modal */}
+      <AudioModal track={activeTrack} onClose={() => setActiveTrack(null)} />
+
+      {/* Floating Toast Notification */}
+      <Toast
+        message={toastMessage}
+        type={toastType}
+        onClose={() => setToastMessage(null)}
+      />
+    </main>
   );
 }
