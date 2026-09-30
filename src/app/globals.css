@@ -106,3 +106,55 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Floating theme-song player */
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 8s linear infinite;
+}
+
+@keyframes eqBar {
+  0%, 100% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+.animate-eq {
+  height: 30%;
+  animation: eqBar 0.8s ease-in-out infinite;
+}
+
+.music-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #ec4899 0%, #a855f7 var(--pct, 0%), rgba(255, 255, 255, 0.12) var(--pct, 0%));
+  cursor: pointer;
+}
+
+.music-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.8);
+}
+
+.music-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.8);
+}

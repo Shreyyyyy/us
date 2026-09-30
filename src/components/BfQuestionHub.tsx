@@ -217,7 +217,7 @@ export default function BfQuestionHub({ onNotify }: BfQuestionHubProps) {
               <textarea
                 value={shreyReply}
                 onChange={(e) => setShreyReply(e.target.value)}
-                placeholder="e.g., 'Taking a 10 min break right now. Miss you immensely my Laddoo.' or 'Models converged, let me order paneer for us!'"
+                placeholder="e.g., 'Taking a 10 min break right now. Miss you immensely my Chintu.' or 'Models converged, let me order paneer for us!'"
                 rows={3}
                 className="w-full rounded-2xl bg-black/40 border border-white/10 focus:border-sky-400 text-white placeholder-zinc-500 p-3.5 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-sky-400 transition-all resize-none"
               />

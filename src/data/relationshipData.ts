@@ -172,7 +172,7 @@ export const SOUNDTRACK: SongTrack[] = [
     id: "behkana",
     title: "Behkana",
     artist: "Ali Tariq & Harshdeep Kaur",
-    youtubeId: "OlNwUcYHVaw",
+    youtubeId: "T8enTpsZx-M",
     annotation: "Our sacred anthem. Unspoken glances, heartbeats syncing without a single word.",
     tag: "Definitive Song",
     accent: "from-rose-500/20 to-pink-500/10"
@@ -206,7 +206,10 @@ export const SOUNDTRACK: SongTrack[] = [
   }
 ];
 
-// Lore & Timeline
+// Theme song that plays across the whole website (floating player)
+export const THEME_SONG: SongTrack = SOUNDTRACK[0];
+
+// Lore & Timeline with Candid Moments
 export const LORE_TIMELINE: LoreMilestone[] = [
   {
     year: "Chapter 1",
@@ -214,7 +217,7 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "The MCA Cool Guy Meets Quiet MSc Psychology Girl",
     description: "Two vastly different worlds on the same campus. He was the popular nerdy tech enthusiast with black frames; she was the observant, gentle psychology scholar. The universe was already setting the dominoes in motion.",
     icon: "🌱",
-    loreSecret: "Fun fact: She noticed the quiet intensity behind his nerdy spectacles long before he realized."
+    loreSecret: "Fun fact: Chintu noticed the quiet intensity behind his nerdy spectacles long before he realized."
   },
   {
     year: "Chapter 2",
@@ -222,7 +225,10 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "Instagram DMs collapsed the passage of time",
     description: "Years elapsed, paths diverged, and yet a simple conversation on Instagram dissolved months of silence in minutes. The wavelength was immediate, effortless, and impossible to mistake for anything casual.",
     icon: "📱",
-    loreSecret: "The messages turned into 3-hour late night deep talks faster than any AI latency."
+    loreSecret: "The messages turned into 3-hour late night deep talks faster than any AI latency.",
+    photo: "/photos/photo-1.jpeg",
+    photoTag: "Lazy Cafe Sunbeams",
+    photoCaption: "Our quiet, effortless wavelength beside the sunlit green window."
   },
   {
     year: "Chapter 3",
@@ -230,7 +236,10 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "Miles across Delhi-NCR for 45 stolen minutes",
     description: "Switching yellow lines, blue lines, crowded metro platforms in Delhi heat—just to sit beside each other for an hour before heading back. Unspoken devotion in every single transit card swipe.",
     icon: "🚇",
-    loreSecret: "Divija always noticed: 'He travelled all this way just to see me smile.' It meant everything."
+    loreSecret: "Chintu always noticed: 'He travelled all this way just to see me smile.' It meant everything.",
+    photo: "/photos/photo-2.jpeg",
+    photoTag: "100% Attention Matrix",
+    photoCaption: "That look in the mall: Shrey mesmerized by Chintu with her pink rose."
   },
   {
     year: "Chapter 4",
@@ -238,15 +247,21 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "Pouring sky, glowing car headlights, infinite warmth",
     description: "The deluge outside, traffic crawling, but inside the car it was an oasis of warmth, laughter, and rain droplets streaming down the windshield with music softly playing.",
     icon: "🌧️",
-    loreSecret: "The exact moment the car felt like home."
+    loreSecret: "The exact moment the front seat felt like home.",
+    photo: "/photos/photo-6.jpeg",
+    photoTag: "Sunroof Skies",
+    photoCaption: "Under the panoramic glass sunroof: trading silly faces and warm laughter."
   },
   {
     year: "Chapter 5",
-    title: "ISKCON Temple • Spiritual Center",
+    title: "ISKCON Temple & Downtown Nights",
     subtitle: "Quiet reassurance with Kanha ji guiding steps",
-    description: "Standing before the deities with incense in the air, bell ringing, praying not for superficial things, but for each other's peace, strength, and life journey. Kanha ji at the center of the bond.",
+    description: "Standing before the deities with incense in the air, bell ringing, praying not for superficial things, but for each other's peace, strength, and life journey. Kanha ji at the center of our bond.",
     icon: "🛕",
-    loreSecret: "A promise made in sacred quietude is forever."
+    loreSecret: "A promise made in sacred quietude is forever.",
+    photo: "/photos/photo-4.jpeg",
+    photoTag: "Downtown Brews",
+    photoCaption: "Downtown toast under amber lights, sharing dreams and quiet promises."
   },
   {
     year: "Chapter 6",
@@ -254,7 +269,10 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "Brother banging on the door while Shrey hid in pure terror",
     description: "Folklore of legendary proportions. The adrenaline rush, Shrey freezing like a statue behind furniture, heart pounding at 200 BPM, trying not to breathe. An unforgettable comedy chapter!",
     icon: "🚪",
-    loreSecret: "Shrey's heart rate was officially higher than any GPU stress test on record."
+    loreSecret: "Shrey's heart rate was officially higher than any GPU stress test on record.",
+    photo: "/photos/photo-3.jpeg",
+    photoTag: "Chaos Duo",
+    photoCaption: "Matching cheeky thinking poses from the top atrium overlook."
   },
   {
     year: "Chapter 7",
@@ -262,7 +280,10 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "Official, documented, and completely irreversible",
     description: "From unspoken glances to a lifetime partnership. Two hearts calibrated forever.",
     icon: "❤️",
-    loreSecret: "Model weights frozen forever. Zero rollback support."
+    loreSecret: "Model weights frozen forever. Zero rollback support.",
+    photo: "/photos/photo-5.jpeg",
+    photoTag: "Bollywood Romance",
+    photoCaption: "Our cinematic cheek kiss under glowing red arches — pure poetry."
   }
 ];
 
@@ -298,7 +319,7 @@ export const OPEN_WHEN_LETTERS: OpenWhenLetter[] = [
     icon: "🌙",
     preview: "When your brain is running 50 background processes at 2 AM...",
     body: "Shut down your mental browser tabs. Nothing needs to be resolved tonight. The world can wait until the sun rises. Imagine our future living room with warm fairy lights, soft rain pattering on the glass, and our quiet laughter. You are safe, you are loved, and tomorrow has fresh grace waiting for you.",
-    ps: "P.S. Goodnight my Laddoo / Divu. Sleep peacefully."
+    ps: "P.S. Goodnight my Chintu. Sleep peacefully, wrapped in my love."
   },
   {
     id: "reassure",
@@ -313,7 +334,7 @@ export const OPEN_WHEN_LETTERS: OpenWhenLetter[] = [
     title: "Need a Quick Laugh",
     icon: "😂",
     preview: "Emergency serotonin injection for your face...",
-    body: "Reminder: Somewhere in an alternate universe, you are still hiding behind that door while the brother is knocking, wondering if you should jump out the window or pretend to be a coat rack. Also reminder: You are my laddoo, I am your jalebi, and together we are creating a whole chaotic confectionery shop!",
+    body: "Reminder: Somewhere in an alternate universe, you are still hiding behind that door while the brother is knocking, wondering if you should jump out the window or pretend to be a coat rack. Also reminder: You are my brilliant boy, I am your Chintu, and together we run our own happy chaotic world!",
     ps: "P.S. Smile right now! Yes, I saw that half-smile."
   },
   {

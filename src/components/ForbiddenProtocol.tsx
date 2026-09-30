@@ -86,7 +86,7 @@ export default function ForbiddenProtocol() {
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white mb-4 leading-tight">
-              Hey my Laddoo & Divu,
+              Hey my Shrey & Chintu,
             </h2>
 
             <div className="space-y-4 text-sm sm:text-base text-pink-100 font-serif leading-relaxed max-w-xl mx-auto">

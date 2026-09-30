@@ -3,7 +3,7 @@
 import React from "react";
 import { SOUNDTRACK } from "@/data/relationshipData";
 import { SongTrack } from "@/types";
-import { Play, ExternalLink, Headphones, Disc3 } from "lucide-react";
+import { Play, Headphones, Disc3 } from "lucide-react";
 import { sound } from "@/lib/sound";
 
 interface SoundtrackSectionProps {
@@ -86,16 +86,6 @@ export default function SoundtrackSection({ onPlayTrack, activeTrackId }: Soundt
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Stream Now</span>
                 </button>
-
-                <a
-                  href={`https://www.youtube.com/watch?v=${track.youtubeId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-amber-300 border border-amber-300/20 transition-all"
-                  title="Open in YouTube"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </a>
               </div>
             </div>
           );

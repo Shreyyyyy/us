@@ -27,8 +27,8 @@ export default function SharedVault({ onNotify }: SharedVaultProps) {
   const triggerDualReminder = () => {
     sound.playWandSpell();
     const reminders = [
-      "🌸 Divija reminder to Shrey: Unclench your jaw, drink a tall glass of water, and remember you are my genius laddoo.",
-      "⚡ Shrey reminder to Divija: Stop carrying the weight of the universe in your mind. I am always by your side.",
+      "🌸 Divija reminder to Shrey: Unclench your jaw, drink a tall glass of water, and remember you are my favorite boy.",
+      "⚡ Shrey reminder to Chintu: Stop carrying the weight of the universe in your mind. I am always holding your hand, Chintu.",
       "🦚 Sacred memory: Travelling miles on the metro just to hold hands for 45 minutes. That love lives forever.",
       "✨ Divine anchor: Kanha ji has already scripted our happily ever after. Relax and smile."
     ];

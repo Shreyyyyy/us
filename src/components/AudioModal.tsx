@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { X, ExternalLink, Disc3 } from "lucide-react";
+import { X, Disc3 } from "lucide-react";
 import { SongTrack } from "@/types";
 
 interface AudioModalProps {
@@ -81,15 +81,6 @@ export default function AudioModal({ track, onClose }: AudioModalProps) {
               Artist: {track.artist}
             </p>
           </div>
-          <a
-            href={`https://www.youtube.com/watch?v=${track.youtubeId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-amber-300 border border-amber-300/20 transition-all self-start sm:self-auto"
-          >
-            Open in YouTube
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
         </div>
       </div>
     </div>

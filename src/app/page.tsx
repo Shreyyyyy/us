@@ -8,7 +8,7 @@ import HeroSection from "@/components/HeroSection";
 import GfQuestionHub from "@/components/GfQuestionHub";
 import BfQuestionHub from "@/components/BfQuestionHub";
 import SharedVault from "@/components/SharedVault";
-import PhotoGallery from "@/components/PhotoGallery";
+import RomanticKeepsakes from "@/components/RomanticKeepsakes";
 import SoundtrackSection from "@/components/SoundtrackSection";
 import AiMatrixSection from "@/components/AiMatrixSection";
 import LoreTimeline from "@/components/LoreTimeline";
@@ -19,6 +19,7 @@ import FutureRoadmap from "@/components/FutureRoadmap";
 import ForbiddenProtocol from "@/components/ForbiddenProtocol";
 import AudioModal from "@/components/AudioModal";
 import Toast from "@/components/Toast";
+import BackgroundMusic from "@/components/BackgroundMusic";
 import { Heart, Sparkles, Wand2 } from "lucide-react";
 import { sound } from "@/lib/sound";
 
@@ -64,11 +65,11 @@ export default function Home() {
 
   const handleRandomReminder = () => {
     const reminders = [
-      "In case your neural networks are stuck debugging: your girlfriend loves you immensely.",
-      "You are my sunshine, my laddoo, my bhalu. Never forget that.",
-      "Travelling miles on the metro just to sit together for an hour—that memory lives in my heart forever.",
+      "In case your thoughts are racing: your favorite person loves you immensely.",
+      "You are my sunshine, my Chintu, my whole heart. Never forget that.",
+      "Travelling miles on the metro just to sit together for an hour—that memory lives in our hearts forever.",
       "Kanha ji is always protecting us. You are never alone in any battle.",
-      "Divija protocol: Go drink a glass of water, relax your jaw, and stretch your neck, AI genius."
+      "Self-care protocol: Go drink a glass of water, relax your jaw, and smile."
     ];
     const picked = reminders[Math.floor(Math.random() * reminders.length)];
     showNotification(picked, "reminder");
@@ -97,7 +98,7 @@ export default function Home() {
         onTriggerSpell={(msg) => showNotification(msg, "spell")}
       />
 
-      <div className="relative z-10 px-4 sm:px-6 max-w-6xl mx-auto space-y-16 pb-24">
+      <div className="relative z-10 px-4 sm:px-6 max-w-6xl mx-auto space-y-16 pb-48">
         {/* Hero Section */}
         <HeroSection
           role={role}
@@ -127,8 +128,8 @@ export default function Home() {
           </section>
         )}
 
-        {/* Visual Chronicles & Candids Photo Gallery */}
-        <PhotoGallery />
+        {/* Scattered Romantic Polaroids & Loose Keepsakes */}
+        <RomanticKeepsakes />
 
         {/* AI Neural Weights Section */}
         <AiMatrixSection onNotify={showNotification} />
@@ -161,7 +162,7 @@ export default function Home() {
         <footer className="text-center pt-12 pb-6 border-t border-white/10 text-xs text-zinc-400 space-y-2 font-sans">
           <div className="flex items-center justify-center gap-1.5 text-pink-400 text-sm">
             <Heart className="w-4 h-4 fill-current" />
-            <span className="font-serif">Engineered with endless devotion for Shrey & Divija</span>
+            <span className="font-serif">Engineered with endless devotion for Shrey & Chintu</span>
           </div>
           <p className="text-[11px] text-zinc-500 font-mono">
             Model weights frozen forever. Zero updates, zero rollbacks. Kanha ji protected 🦚🔒
@@ -171,6 +172,9 @@ export default function Home() {
 
       {/* Embedded YouTube Audio/Video Modal */}
       <AudioModal track={activeTrack} onClose={() => setActiveTrack(null)} />
+
+      {/* Floating theme-song player (plays on-site, pauses while a soundtrack track is open) */}
+      <BackgroundMusic suspended={activeTrack !== null} />
 
       {/* Floating Toast Notification */}
       <Toast

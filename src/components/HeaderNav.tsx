@@ -36,7 +36,7 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: Header
     sound.playClick();
     onRoleChange(newRole);
     if (newRole === "gf") {
-      onTriggerSpell("🌸 Switched to Divija Mode: Psychology, care & heartfelt questions loaded.");
+      onTriggerSpell("🌸 Switched to Chintu Mode: Psychology, care & heartfelt questions loaded.");
     } else if (newRole === "bf") {
       onTriggerSpell("⚡ Switched to Shrey Mode: AI tensors, code audits & boyfriend diagnostics online.");
     } else {
@@ -68,10 +68,10 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: Header
           </div>
           <div className="flex flex-col">
             <span className="font-serif font-bold text-sm tracking-tight text-white flex items-center gap-1">
-              Shrey <span className="text-pink-400 font-sans text-xs">×</span> Divija
+              Shrey <span className="text-pink-400 font-sans text-xs">×</span> Chintu
             </span>
             <span className="font-mono text-[9px] uppercase tracking-wider text-pink-300/70">
-              {role === "gf" ? "Divija OS 2.0" : role === "bf" ? "Boyfriend OS 2.0" : "Synchronized OS"}
+              {role === "gf" ? "Chintu OS 2.0" : role === "bf" ? "Boyfriend OS 2.0" : "Synchronized OS"}
             </span>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: Header
             }`}
           >
             <Heart className="w-3.5 h-3.5 fill-current" />
-            <span>Divija (GF)</span>
+            <span>Chintu (GF)</span>
           </button>
 
           <button
@@ -124,22 +124,16 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: Header
             Questions
           </button>
           <button
-            onClick={() => scrollTo("gallery")}
+            onClick={() => scrollTo("lore")}
             className="px-2.5 py-1 text-xs text-zinc-300 hover:text-pink-300 font-medium rounded-lg hover:bg-white/5 transition-colors"
           >
-            Photos 📸
+            Our Lore & Photos 💫
           </button>
           <button
             onClick={() => scrollTo("music")}
             className="px-2.5 py-1 text-xs text-zinc-300 hover:text-pink-300 font-medium rounded-lg hover:bg-white/5 transition-colors"
           >
-            Music
-          </button>
-          <button
-            onClick={() => scrollTo("lore")}
-            className="px-2.5 py-1 text-xs text-zinc-300 hover:text-pink-300 font-medium rounded-lg hover:bg-white/5 transition-colors"
-          >
-            Lore
+            Soundtrack
           </button>
           <button
             onClick={() => scrollTo("letters")}

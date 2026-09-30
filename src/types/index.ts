@@ -32,6 +32,9 @@ export interface LoreMilestone {
   description: string;
   icon: string;
   loreSecret?: string;
+  photo?: string;
+  photoCaption?: string;
+  photoTag?: string;
 }
 
 export interface OpenWhenLetter {

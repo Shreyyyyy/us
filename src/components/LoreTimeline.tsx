@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { LORE_TIMELINE } from "@/data/relationshipData";
 import { Sparkles, Eye, Compass } from "lucide-react";
 import { sound } from "@/lib/sound";
@@ -58,6 +59,35 @@ export default function LoreTimeline() {
                 <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
                   {item.description}
                 </p>
+
+                {/* Embedded Candid Memory Polaroid */}
+                {item.photo && (
+                  <div className="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center gap-4 bg-black/40 p-3.5 rounded-2xl border border-white/5">
+                    <div className="relative w-full sm:w-44 h-52 sm:h-36 rounded-xl overflow-hidden shrink-0 shadow-lg border border-pink-500/20 group/photo">
+                      <Image
+                        src={item.photo}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover/photo:scale-105 transition-transform duration-500"
+                        sizes="200px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      {item.photoTag && (
+                        <span className="absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-wider text-pink-300 bg-black/70 px-2 py-0.5 rounded-full border border-pink-500/30">
+                          {item.photoTag}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex-1 space-y-1.5 text-left">
+                      <span className="font-serif italic text-xs sm:text-sm text-pink-200/95 leading-relaxed block">
+                        “{item.photoCaption}”
+                      </span>
+                      <span className="font-mono text-[10px] text-amber-300/80 block">
+                        ✦ Authentic moment • Shrey & Chintu
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Secret Toggle */}
                 {item.loreSecret && (
