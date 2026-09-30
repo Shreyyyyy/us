@@ -8,6 +8,7 @@ import HeroSection from "@/components/HeroSection";
 import GfQuestionHub from "@/components/GfQuestionHub";
 import BfQuestionHub from "@/components/BfQuestionHub";
 import SharedVault from "@/components/SharedVault";
+import PhotoGallery from "@/components/PhotoGallery";
 import SoundtrackSection from "@/components/SoundtrackSection";
 import AiMatrixSection from "@/components/AiMatrixSection";
 import LoreTimeline from "@/components/LoreTimeline";
@@ -125,6 +126,9 @@ export default function Home() {
             <SharedVault onNotify={showNotification} />
           </section>
         )}
+
+        {/* Visual Chronicles & Candids Photo Gallery */}
+        <PhotoGallery />
 
         {/* AI Neural Weights Section */}
         <AiMatrixSection onNotify={showNotification} />

@@ -52,3 +52,15 @@ export interface VoucherItem {
   redeemed: boolean;
   forWhom: "Divija" | "Shrey";
 }
+
+export interface MemoryPhoto {
+  id: string;
+  src: string;
+  title: string;
+  caption: string;
+  tag: string;
+  vibe: string;
+  category: "romantic" | "chaos" | "dates";
+  aspect?: string;
+}
+

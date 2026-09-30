@@ -369,3 +369,67 @@ export const LOVE_VOUCHERS: VoucherItem[] = [
     forWhom: "Divija"
   }
 ];
+
+// Photo Gallery - Real memories of Shrey & Divija
+export const GALLERY_PHOTOS: import("@/types").MemoryPhoto[] = [
+  {
+    id: "photo-kiss-cinema",
+    src: "/photos/photo-5.jpeg",
+    title: "Our Bollywood Cinematic Kiss",
+    caption: "DDLJ glowing in the cinema background, warm neon arch lights, and a gentle cheek kiss that makes all the noisy bustle of Delhi-NCR fade into silence. Pure poetry.",
+    tag: "Favorite Memory",
+    vibe: "“Bina bole jo nazar keh jaaye…”",
+    category: "romantic",
+    aspect: "aspect-[3/4]"
+  },
+  {
+    id: "photo-that-look",
+    src: "/photos/photo-2.jpeg",
+    title: "That Look (100% Attention Matrix)",
+    caption: "Shrey in his signature black frames and black sleeveless top, completely captivated by Divija. Divija with a sweet pink rose pinned to her bag, linking hands. The way he looks at her says more than a million words.",
+    tag: "Unconditional Love",
+    vibe: "Attention Matrix: 1.000",
+    category: "romantic",
+    aspect: "aspect-[3/4]"
+  },
+  {
+    id: "photo-car-sunroof",
+    src: "/photos/photo-6.jpeg",
+    title: "Sunroof Skies & Car Bickering",
+    caption: "Under the panoramic glass sunroof! Shrey in his red basketball jersey resting his chin, totally fascinated, while Divija in her glasses makes cute goofy faces. The best memories are made between red lights.",
+    tag: "Noida Drives",
+    vibe: "Front Seat Royalty",
+    category: "chaos",
+    aspect: "aspect-[4/3]"
+  },
+  {
+    id: "photo-cafe-sunlight",
+    src: "/photos/photo-1.jpeg",
+    title: "Lazy Cafe Sunbeams & Warmth",
+    caption: "Sitting side-by-side beside the sunlit green window. Divija in her crimson floral dress with that radiant smile, and Shrey right next to her. Effortless comfort that needs zero pretense.",
+    tag: "Quiet Comfort",
+    vibe: "Heartbeat Synced",
+    category: "romantic",
+    aspect: "aspect-[9/16]"
+  },
+  {
+    id: "photo-mall-thinking",
+    src: "/photos/photo-3.jpeg",
+    title: "Masterminds of Kalesh & Cuddles",
+    caption: "Top floor atrium overlook! Matching cheeky thinking poses with fingers under our chins. Posing like we're solving grand mathematical theorems when we're just plotting which snack to devour next.",
+    tag: "Chaos Duo",
+    vibe: "Overthinking Mode: Peak",
+    category: "chaos",
+    aspect: "aspect-[4/3]"
+  },
+  {
+    id: "photo-downtown-brews",
+    src: "/photos/photo-4.jpeg",
+    title: "Downtown Brews & Midnight Talks",
+    caption: "Two frosty mugs of craft beer under the warm amber pub lights, spectacles set down on the table. A toast to surviving tough sprints, chasing wild dreams, and cherishing stolen hours together.",
+    tag: "Date Night",
+    vibe: "Cheers to Us",
+    category: "dates",
+    aspect: "aspect-[3/4]"
+  }
+];

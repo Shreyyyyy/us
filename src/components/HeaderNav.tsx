@@ -124,6 +124,12 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: Header
             Questions
           </button>
           <button
+            onClick={() => scrollTo("gallery")}
+            className="px-2.5 py-1 text-xs text-zinc-300 hover:text-pink-300 font-medium rounded-lg hover:bg-white/5 transition-colors"
+          >
+            Photos 📸
+          </button>
+          <button
             onClick={() => scrollTo("music")}
             className="px-2.5 py-1 text-xs text-zinc-300 hover:text-pink-300 font-medium rounded-lg hover:bg-white/5 transition-colors"
           >
