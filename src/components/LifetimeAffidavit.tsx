@@ -568,78 +568,78 @@ export default function LifetimeAffidavit() {
             </div>
           </div>
         </div>
-
-        {/* Big Wax Seal of Lifetime Booking */}
-        {isExecuted && (
-          <div className="mt-8 p-5 rounded-2xl bg-amber-50 border-2 border-amber-600/60 flex flex-col sm:flex-row items-center justify-between gap-4 animate-fadeIn">
-            <div className="flex items-center gap-3.5">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-600 via-yellow-500 to-amber-700 text-white flex items-center justify-center shadow-lg shadow-amber-600/40 text-center font-bold text-[9px] uppercase tracking-tighter border-2 border-white ring-4 ring-amber-300 animate-bounce-short">
-                <div>
-                  <div className="text-base">💍</div>
-                  SEALED
-                </div>
-              </div>
-              <div>
-                <span className="font-mono text-[10px] uppercase font-bold text-amber-800 tracking-wider block">
-                  REGISTRATION CODE: #LADDU-JALEBI-LIFETIME-CONFIRMED
-                </span>
-                <h4 className="text-base sm:text-lg font-serif font-black text-amber-950">
-                  LIFETIME BOOKING CONFIRMED &amp; SEALED FOREVER ✓
-                </h4>
-                <p className="text-xs text-amber-900 font-sans">
-                  Stored in the Akashic records under Kanha ji&apos;s blessings. Neither party can ever back out.
-                </p>
-              </div>
-            </div>
-
-            <div data-pdf-ignore="true" className="flex items-center gap-2 flex-wrap shrink-0">
-              <button
-                onClick={handleDownloadPdf}
-                disabled={isGeneratingPdf}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-amber-950 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all disabled:opacity-50"
-              >
-                {isGeneratingPdf ? (
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                ) : (
-                  <Download className="w-3.5 h-3.5" />
-                )}
-                <span>{isGeneratingPdf ? "Generating…" : "Download PDF 📜"}</span>
-              </button>
-
-              <button
-                onClick={handlePrint}
-                className="px-4 py-2 rounded-xl bg-amber-900 text-amber-50 hover:bg-amber-800 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all shrink-0"
-              >
-                <Printer className="w-3.5 h-3.5" />
-                <span>Print</span>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Execution CTA Button */}
-        {!isExecuted && (
-          <div data-pdf-ignore="true" className="mt-8 text-center pt-2">
-            <button
-              onClick={handleExecuteContract}
-              disabled={!shreySigned || !divijaSigned}
-              className={`w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-bold font-sans transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 mx-auto ${
-                shreySigned && divijaSigned
-                  ? "bg-gradient-to-r from-amber-500 via-pink-500 to-sky-500 hover:from-amber-600 hover:to-sky-600 text-white shadow-amber-500/30 scale-105 animate-pulse"
-                  : "bg-zinc-200 text-zinc-400 border border-zinc-300 cursor-not-allowed"
-              }`}
-            >
-              <Lock className="w-4 h-4" />
-              <span>EXECUTE &amp; LOCK LIFETIME BOOKING (BOTH MUST SIGN) 💍</span>
-            </button>
-            <p className="text-[11px] font-mono text-zinc-500 mt-2">
-              {!shreySigned || !divijaSigned
-                ? "Both Laddu and Jalebi must sign above to activate the seal"
-                : "Ready! Click to register your lifetime booking with cosmic authority"}
-            </p>
-          </div>
-        )}
       </div>
+
+      {/* Big Wax Seal of Lifetime Booking (Interactive Web Card - Outside Document Sheet) */}
+      {isExecuted && (
+        <div className="p-5 rounded-2xl bg-amber-50 border-2 border-amber-600/60 flex flex-col sm:flex-row items-center justify-between gap-4 animate-fadeIn shadow-xl">
+          <div className="flex items-center gap-3.5">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-600 via-yellow-500 to-amber-700 text-white flex items-center justify-center shadow-lg shadow-amber-600/40 text-center font-bold text-[9px] uppercase tracking-tighter border-2 border-white ring-4 ring-amber-300 animate-bounce-short">
+              <div>
+                <div className="text-base">💍</div>
+                SEALED
+              </div>
+            </div>
+            <div>
+              <span className="font-mono text-[10px] uppercase font-bold text-amber-800 tracking-wider block">
+                REGISTRATION CODE: #LADDU-JALEBI-LIFETIME-CONFIRMED
+              </span>
+              <h4 className="text-base sm:text-lg font-serif font-black text-amber-950">
+                LIFETIME BOOKING CONFIRMED &amp; SEALED FOREVER ✓
+              </h4>
+              <p className="text-xs text-amber-900 font-sans">
+                Stored in the Akashic records under Kanha ji&apos;s blessings. Neither party can ever back out.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap shrink-0">
+            <button
+              onClick={handleDownloadPdf}
+              disabled={isGeneratingPdf}
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-amber-950 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all disabled:opacity-50"
+            >
+              {isGeneratingPdf ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>{isGeneratingPdf ? "Generating…" : "Download Contract PDF 📜"}</span>
+            </button>
+
+            <button
+              onClick={handlePrint}
+              className="px-4 py-2 rounded-xl bg-amber-900 text-amber-50 hover:bg-amber-800 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all shrink-0"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>Print</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Execution CTA Button (Outside Document Sheet) */}
+      {!isExecuted && (
+        <div className="text-center pt-2">
+          <button
+            onClick={handleExecuteContract}
+            disabled={!shreySigned || !divijaSigned}
+            className={`w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-bold font-sans transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 mx-auto ${
+              shreySigned && divijaSigned
+                ? "bg-gradient-to-r from-amber-500 via-pink-500 to-sky-500 hover:from-amber-600 hover:to-sky-600 text-white shadow-amber-500/30 scale-105 animate-pulse"
+                : "bg-zinc-200 text-zinc-400 border border-zinc-300 cursor-not-allowed"
+            }`}
+          >
+            <Lock className="w-4 h-4" />
+            <span>EXECUTE &amp; LOCK LIFETIME BOOKING (BOTH MUST SIGN) 💍</span>
+          </button>
+          <p className="text-[11px] font-mono text-zinc-400 mt-2">
+            {!shreySigned || !divijaSigned
+              ? "Both Laddu and Jalebi must sign above to activate the seal"
+              : "Ready! Click to register your lifetime booking with cosmic authority"}
+          </p>
+        </div>
+      )}
     </section>
   );
 }
