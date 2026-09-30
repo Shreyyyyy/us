@@ -18,7 +18,8 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
 
   const heroContent = {
     gf: {
-      terminal: "INITIALIZING JALEBI_OS v2.0 // PSYCH_HEARTBEAT_SYNCED ✓",
+      terminal: "🌸 JALEBI_OS v2.0 • PSYCH_SYNCED ✓",
+      terminalFull: "INITIALIZING JALEBI_OS v2.0 // PSYCH_HEARTBEAT_SYNCED ✓",
       name: "Divija (Jalebi) 🌸",
       subtitle: "A dreamy, enchanted haven designed for my sweet MSc Psychologist, my favorite human, and the queen of my heart.",
       badge: "JALEBI MODE ACTIVE",
@@ -26,7 +27,8 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
       quote: "“Bina bole jo nazar keh jaaye… haule haule dil ko dil se milaaye.”",
     },
     bf: {
-      terminal: "INITIALIZING LADDU_OS v2.0 // NEURAL_PAIR_INIT_SUCCESS ✓",
+      terminal: "⚡ LADDU_OS v2.0 • TENSORS_SYNCED ✓",
+      terminalFull: "INITIALIZING LADDU_OS v2.0 // NEURAL_PAIR_INIT_SUCCESS ✓",
       name: "Shrey (Laddu) ⚡",
       subtitle: "A dreamy, enchanted corner of the web made for my favourite nerdy, black-frame wearing, paneer-eating, infinitely ambitious AI engineer.",
       badge: "LADDU MODE ACTIVE",
@@ -34,7 +36,8 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
       quote: "“In an infinite universe of mathematical noise, my heart converged on Jalebi with zero error tolerance.”",
     },
     together: {
-      terminal: "INITIALIZING CELESTIAL_DUO_OS v∞ // DUAL_ORBITS_LOCKED ✓",
+      terminal: "✨ CELESTIAL_OS • ORBITS_SYNCED ✓",
+      terminalFull: "INITIALIZING CELESTIAL_DUO_OS v∞ // DUAL_ORBITS_LOCKED ✓",
       name: "Laddu & Jalebi ❤️",
       subtitle: "Where quiet psychology meets machine learning code, wrapped in Kanha ji's blessings and endless love.",
       badge: "CELESTIAL DUO HARMONY",
@@ -49,15 +52,16 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
   };
 
   return (
-    <section className="relative pt-6 pb-12 text-center max-w-5xl mx-auto space-y-6">
+    <section className="relative pt-3 sm:pt-6 pb-8 sm:pb-12 text-center max-w-5xl mx-auto space-y-4 sm:space-y-6 px-3">
       {/* Terminal Eyebrow */}
-      <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[11px] font-mono tracking-widest font-semibold backdrop-blur-md shadow-md ${heroContent.badgeColor}`}>
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-        <span>{heroContent.terminal}</span>
+      <div className={`inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border text-[10px] sm:text-xs font-mono tracking-wider font-semibold backdrop-blur-md shadow-md max-w-full ${heroContent.badgeColor}`}>
+        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+        <span className="sm:hidden">{heroContent.terminal}</span>
+        <span className="hidden sm:inline">{heroContent.terminalFull}</span>
       </div>
 
       {/* Hero Headline */}
-      <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-extrabold text-white tracking-tight leading-[1.08]">
+      <h1 className="text-3xl sm:text-6xl md:text-7xl font-serif font-extrabold text-white tracking-tight leading-[1.15]">
         Welcome home, <br />
         <span className="shimmer-text">{heroContent.name}</span> 🪄✨
       </h1>

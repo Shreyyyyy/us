@@ -168,66 +168,66 @@ export default function LifetimeAffidavit() {
       </div>
 
       {/* Main Legal Document Card */}
-      <div className="relative rounded-3xl p-5 sm:p-10 border-4 border-amber-600/40 bg-[#fdfbf7] text-zinc-900 shadow-2xl shadow-amber-950/40 overflow-hidden font-serif">
+      <div className="relative rounded-3xl p-3.5 sm:p-10 border-2 sm:border-4 border-amber-600/40 bg-[#fdfbf7] text-zinc-900 shadow-2xl shadow-amber-950/40 overflow-hidden font-serif">
         {/* Subtle Guilloche & Legal Watermark */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center select-none text-9xl font-bold font-mono">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center select-none text-5xl sm:text-9xl font-bold font-mono">
           🦚 SHREY × DIVIJA 🦚
         </div>
 
         {/* Indian Non-Judicial E-Stamp Header */}
-        <div className="border-4 border-emerald-900/60 rounded-2xl p-4 sm:p-6 mb-8 bg-[#f5fbf7] relative">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-emerald-900/30 pb-4 text-center sm:text-left">
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-full border-2 border-emerald-900 flex items-center justify-center text-3xl font-serif bg-emerald-100 shadow-inner">
+        <div className="border-2 sm:border-4 border-emerald-900/60 rounded-2xl p-3 sm:p-6 mb-6 sm:mb-8 bg-[#f5fbf7] relative">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-b border-emerald-900/30 pb-3 sm:pb-4 text-center sm:text-left">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border-2 border-emerald-900 flex items-center justify-center text-2xl sm:text-3xl font-serif bg-emerald-100 shadow-inner shrink-0">
                 🦚
               </div>
               <div>
-                <span className="font-mono text-[10px] tracking-widest font-bold uppercase text-emerald-950 block">
+                <span className="font-mono text-[9px] sm:text-[10px] tracking-wider font-bold uppercase text-emerald-950 block">
                   GOVERNMENT OF SACRED DESTINY &amp; ETERNAL LOVE
                 </span>
-                <span className="text-lg sm:text-xl font-bold font-serif text-emerald-950">
+                <span className="text-base sm:text-xl font-bold font-serif text-emerald-950 block leading-tight">
                   ₹100 NON-JUDICIAL E-STAMP CERTIFICATE
                 </span>
-                <span className="font-mono text-[10px] text-emerald-800 block">
-                  NCR JURISDICTION // BOOKING REGISTRATION NO: DEL-LADDU-JALEBI-2026-∞
+                <span className="font-mono text-[9px] sm:text-[10px] text-emerald-800 block">
+                  REG: DEL-LADDU-JALEBI-2026-∞
                 </span>
               </div>
             </div>
 
-            <div className="text-center sm:text-right font-mono text-[11px] text-emerald-900">
-              <span className="px-2.5 py-1 bg-emerald-900/10 rounded border border-emerald-900/20 font-bold block mb-1">
+            <div className="text-center sm:text-right font-mono text-[10px] sm:text-[11px] text-emerald-900">
+              <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-emerald-900/10 rounded border border-emerald-900/20 font-bold block mb-1">
                 VALUE: ONE HUNDRED MILLION SMILES
               </span>
               <span>Issued on: {executionDate || "30 September 2026"}</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 font-mono text-[10px] text-emerald-900">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 font-mono text-[10px] text-emerald-900 text-left">
             <div>
-              <span className="text-emerald-700 block">First Party:</span>
+              <span className="text-emerald-700 block text-[9px]">First Party:</span>
               <strong className="text-xs">Shrey (Laddu)</strong>
             </div>
             <div>
-              <span className="text-emerald-700 block">Second Party:</span>
+              <span className="text-emerald-700 block text-[9px]">Second Party:</span>
               <strong className="text-xs">Divija (Jalebi)</strong>
             </div>
             <div>
-              <span className="text-emerald-700 block">Stamp Duty Paid By:</span>
+              <span className="text-emerald-700 block text-[9px]">Stamp Duty:</span>
               <strong>Infinite Devotion</strong>
             </div>
             <div>
-              <span className="text-emerald-700 block">Validity:</span>
-              <strong className="text-emerald-900">Lifetime + 7 Lifetimes</strong>
+              <span className="text-emerald-700 block text-[9px]">Validity:</span>
+              <strong className="text-emerald-900">7 Lifetimes</strong>
             </div>
           </div>
         </div>
 
         {/* Title of Affidavit */}
-        <div className="text-center space-y-1 mb-8">
-          <h3 className="text-2xl sm:text-3xl font-serif font-black tracking-wide text-zinc-950 uppercase border-b-2 border-zinc-900 pb-2 inline-block">
+        <div className="text-center space-y-1 mb-6 sm:mb-8">
+          <h3 className="text-lg sm:text-2xl md:text-3xl font-serif font-black tracking-wide text-zinc-950 uppercase border-b-2 border-zinc-900 pb-2 inline-block leading-tight">
             AFFIDAVIT OF ETERNAL TOGETHERNESS &amp; LIFETIME BOOKING
           </h3>
-          <p className="text-xs font-mono text-zinc-600 italic">
+          <p className="text-[10px] sm:text-xs font-mono text-zinc-600 italic">
             Executed under Section 143(3) of the Cosmic Devotion Code, 2026
           </p>
         </div>

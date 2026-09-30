@@ -66,21 +66,21 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto my-8 rounded-3xl p-6 md:p-10 overflow-hidden border border-amber-300/30 bg-gradient-to-b from-[#18112b] via-[#100a1c] to-[#07050d] shadow-2xl shadow-purple-950/50">
+    <div className="relative w-full max-w-4xl mx-auto my-4 sm:my-8 rounded-3xl p-4 sm:p-6 md:p-10 overflow-hidden border border-amber-300/30 bg-gradient-to-b from-[#18112b] via-[#100a1c] to-[#07050d] shadow-2xl shadow-purple-950/50">
       {/* Background glow & silhouettes */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-10 left-0 right-0 h-28 bg-gradient-to-t from-[#06040a] to-transparent pointer-events-none z-10" />
 
       {/* Floating Dynamic Speech Bubble */}
-      <div className="relative z-20 flex justify-center mb-6">
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/95 text-[#240e1f] font-medium text-xs sm:text-sm shadow-xl shadow-black/40 border border-pink-200 animate-float">
+      <div className="relative z-20 flex justify-center mb-4 sm:mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/95 text-[#240e1f] font-medium text-xs sm:text-sm shadow-xl shadow-black/40 border border-pink-200 animate-float max-w-[92vw]">
           <Sparkles className="w-4 h-4 text-pink-500 shrink-0" />
-          <span>{bubbleText}</span>
+          <span className="truncate">{bubbleText}</span>
         </div>
       </div>
 
       {/* Caricatures Stage */}
-      <div className="relative z-10 flex items-end justify-center gap-8 sm:gap-16 min-h-[260px] pb-4">
+      <div className="relative z-10 flex items-end justify-center gap-3 sm:gap-16 min-h-[210px] sm:min-h-[260px] pb-3 sm:pb-4">
         {/* SHREY CARICATURE */}
         <div
           onClick={castShreySpell}
@@ -93,7 +93,7 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
                 CASTING SPELL!
               </span>
             )}
-            <svg width="150" height="230" viewBox="0 0 170 250" className="drop-shadow-lg">
+            <svg viewBox="0 0 170 250" className="w-[125px] sm:w-[150px] h-[185px] sm:h-[230px] drop-shadow-lg">
               {/* Floor Shadow */}
               <ellipse cx="85" cy="235" rx="55" ry="12" fill="rgba(125,211,252,0.22)" />
               {/* Robe */}
@@ -153,7 +153,7 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
                 SPELL CAST!
               </span>
             )}
-            <svg width="150" height="230" viewBox="0 0 170 250" className="drop-shadow-lg">
+            <svg viewBox="0 0 170 250" className="w-[125px] sm:w-[150px] h-[185px] sm:h-[230px] drop-shadow-lg">
               {/* Floor Shadow */}
               <ellipse cx="85" cy="235" rx="55" ry="12" fill="rgba(255,133,192,0.25)" />
               {/* Long Romantic Hair back layer */}
