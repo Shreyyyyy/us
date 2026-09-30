@@ -2,16 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { UserRole } from "@/types";
-import { Volume2, VolumeX, Sparkles, Heart, Zap, Infinity } from "lucide-react";
+import { Volume2, VolumeX, Sparkles, Heart, Zap, Infinity, Lock } from "lucide-react";
 import { sound } from "@/lib/sound";
 
 interface HeaderNavProps {
   role: UserRole;
   onRoleChange: (newRole: UserRole) => void;
   onTriggerSpell: (text: string) => void;
+  onReverify?: () => void;
 }
 
-export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: HeaderNavProps) {
+export default function HeaderNav({ role, onRoleChange, onTriggerSpell, onReverify }: HeaderNavProps) {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [scrolled, setScrolled] = useState(false);
 
@@ -161,6 +162,21 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell }: Header
               <VolumeX className="w-3.5 h-3.5 text-zinc-500" />
             )}
           </button>
+
+          {/* Re-verify identity gate button */}
+          {onReverify && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onReverify();
+              }}
+              title="Proof of Identity Security Gate"
+              className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-amber-300 border border-amber-300/30 transition-colors"
+              aria-label="Switch or Reverify"
+            >
+              <Lock className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
       </div>
     </header>

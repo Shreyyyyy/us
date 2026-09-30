@@ -19,6 +19,7 @@ import FutureRoadmap from "@/components/FutureRoadmap";
 import ForbiddenProtocol from "@/components/ForbiddenProtocol";
 import AudioModal from "@/components/AudioModal";
 import Toast from "@/components/Toast";
+import IdentityGate from "@/components/IdentityGate";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import { Heart, Sparkles, Wand2 } from "lucide-react";
 import { sound } from "@/lib/sound";
@@ -26,6 +27,7 @@ import { sound } from "@/lib/sound";
 export default function Home() {
   const [role, setRole] = useState<UserRole>("gf");
   const [mounted, setMounted] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const [activeTrack, setActiveTrack] = useState<SongTrack | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<"spell" | "reminder" | "success" | "info">("spell");
@@ -36,6 +38,10 @@ export default function Home() {
       const savedRole = localStorage.getItem("relationship_role") as UserRole;
       if (savedRole && (savedRole === "gf" || savedRole === "bf" || savedRole === "together")) {
         setRole(savedRole);
+      }
+      const verified = localStorage.getItem("identity_verified");
+      if (verified === "true") {
+        setIsVerified(true);
       }
     } catch {
       // ignore
@@ -80,14 +86,47 @@ export default function Home() {
       <div className="min-h-screen bg-[#07050d] text-white flex items-center justify-center font-serif text-xl">
         <div className="flex items-center gap-3">
           <Sparkles className="w-6 h-6 text-pink-400 animate-spin" />
-          <span>Calibrating Shrey × Divija Universe...</span>
+          <span>Calibrating Shrey × Chintu Universe...</span>
         </div>
       </div>
     );
   }
 
+  // Identity Proof Security Gate
+  if (!isVerified) {
+    return (
+      <main className="relative min-h-screen selection:bg-pink-500/30 selection:text-pink-100 overflow-x-hidden">
+        <BackgroundStars />
+        <IdentityGate
+          onVerified={(chosenRole) => {
+            setIsVerified(true);
+            handleRoleChange(chosenRole);
+            try {
+              localStorage.setItem("identity_verified", "true");
+            } catch {
+              // ignore
+            }
+            showNotification(
+              chosenRole === "gf"
+                ? "🌸 Identity Verified: Welcome home, Chintu!"
+                : chosenRole === "bf"
+                ? "⚡ Identity Verified: Welcome home, Shrey!"
+                : "✨ Identity Verified: Celestial Harmony Unlocked!",
+              "success"
+            );
+          }}
+        />
+        <Toast
+          message={toastMessage}
+          type={toastType}
+          onClose={() => setToastMessage(null)}
+        />
+      </main>
+    );
+  }
+
   return (
-    <main className="relative min-h-screen selection:bg-pink-500/30 selection:text-pink-100">
+    <main className="relative min-h-screen selection:bg-pink-500/30 selection:text-pink-100 overflow-x-hidden">
       {/* Background Animated Stardust */}
       <BackgroundStars />
 
@@ -96,6 +135,14 @@ export default function Home() {
         role={role}
         onRoleChange={handleRoleChange}
         onTriggerSpell={(msg) => showNotification(msg, "spell")}
+        onReverify={() => {
+          setIsVerified(false);
+          try {
+            localStorage.removeItem("identity_verified");
+          } catch {
+            // ignore
+          }
+        }}
       />
 
       <div className="relative z-10 px-4 sm:px-6 max-w-6xl mx-auto space-y-16 pb-48">
