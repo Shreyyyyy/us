@@ -158,3 +158,21 @@
   background: #fff;
   box-shadow: 0 0 8px rgba(236, 72, 153, 0.8);
 }
+
+/* Legal Document Print Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  header, footer, nav, #music-dock, .no-print, [data-pdf-ignore="true"] {
+    display: none !important;
+  }
+
+  #contract {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}

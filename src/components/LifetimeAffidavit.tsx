@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { sound } from "@/lib/sound";
 import confetti from "canvas-confetti";
-import { ShieldCheck, FileCheck, CheckCircle2, RotateCcw, Download, Printer, Sparkles, Heart, Lock } from "lucide-react";
+import { ShieldCheck, FileCheck, CheckCircle2, RotateCcw, Download, Printer, Sparkles, Heart, Lock, Loader2 } from "lucide-react";
 
 export default function LifetimeAffidavit() {
   const [shreySigned, setShreySigned] = useState(false);
@@ -13,11 +13,24 @@ export default function LifetimeAffidavit() {
   const [activeTab, setActiveTab] = useState<"draw" | "type">("draw");
   const [shreyTypedName, setShreyTypedName] = useState("Shrey (Laddu)");
   const [divijaTypedName, setDivijaTypedName] = useState("Divija (Jalebi)");
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
+  const documentRef = useRef<HTMLDivElement | null>(null);
   const shreyCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const divijaCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDrawingShrey, setIsDrawingShrey] = useState(false);
   const [isDrawingDivija, setIsDrawingDivija] = useState(false);
+
+  const paintDefaultSignature = (who: "shrey" | "divija") => {
+    const canvas = who === "shrey" ? shreyCanvasRef.current : divijaCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "italic 26px 'Brush Script MT', 'Great Vibes', cursive, serif";
+    ctx.fillStyle = "#1e1b4b";
+    ctx.fillText(who === "shrey" ? "Shrey (Laddu) ~" : "Divija (Jalebi) ♡", 25, 45);
+  };
 
   useEffect(() => {
     // Check if contract was already executed in this session
@@ -35,6 +48,19 @@ export default function LifetimeAffidavit() {
     } catch {
       setExecutionDate(new Date().toLocaleDateString("en-IN", { dateStyle: "long" }));
     }
+
+    const timer = setTimeout(() => {
+      try {
+        if (localStorage.getItem("lifetime_contract_executed")) {
+          paintDefaultSignature("shrey");
+          paintDefaultSignature("divija");
+        }
+      } catch {
+        // ignore
+      }
+    }, 250);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Canvas drawing helpers
@@ -151,10 +177,76 @@ export default function LifetimeAffidavit() {
     window.print();
   };
 
+  const handleDownloadPdf = async () => {
+    sound.playClick();
+    if (!documentRef.current) return;
+    setIsGeneratingPdf(true);
+
+    try {
+      const { jsPDF } = await import("jspdf");
+      const html2canvas = (await import("html2canvas")).default;
+
+      const element = documentRef.current;
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#fdfbf7",
+        logging: false,
+        ignoreElements: (el) => {
+          return el.getAttribute("data-pdf-ignore") === "true";
+        },
+      });
+
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const margin = 10;
+      const contentWidth = pageWidth - margin * 2;
+      const contentHeight = (canvas.height * contentWidth) / canvas.width;
+
+      let heightLeft = contentHeight;
+      let position = margin;
+
+      pdf.addImage(imgData, "JPEG", margin, position, contentWidth, contentHeight, undefined, "FAST");
+      heightLeft -= (pageHeight - margin * 2);
+
+      while (heightLeft > 0) {
+        position = heightLeft - contentHeight + margin;
+        pdf.addPage();
+        pdf.addImage(imgData, "JPEG", margin, position, contentWidth, contentHeight, undefined, "FAST");
+        heightLeft -= (pageHeight - margin * 2);
+      }
+
+      pdf.save(`Lifetime-Affidavit-Laddu-Jalebi-${new Date().getFullYear()}.pdf`);
+
+      sound.playSuccess();
+      confetti({
+        particleCount: 55,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#f59e0b", "#ec4899", "#3b82f6", "#10b981", "#ffffff"],
+      });
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+      window.print();
+    } finally {
+      setIsGeneratingPdf(false);
+    }
+  };
+
   return (
     <section id="contract" className="w-full py-12 px-3 sm:px-6 max-w-4xl mx-auto space-y-8">
       {/* Section Header */}
-      <div className="text-center space-y-2">
+      <div className="text-center space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono tracking-widest uppercase">
           <FileCheck className="w-3.5 h-3.5 text-amber-400" />
           <span>OFFICIAL SACRED AFFIDAVIT // SECTION 143(3)</span>
@@ -165,10 +257,39 @@ export default function LifetimeAffidavit() {
         <p className="text-sm sm:text-base text-zinc-300 max-w-xl mx-auto">
           A legitimate, non-revocable legal covenant between Laddu &amp; Jalebi. Once executed, booking is permanent for eternity with zero cancellation policy.
         </p>
+
+        {/* Action Bar: Download PDF & Print */}
+        <div className="flex items-center justify-center gap-2.5 pt-2 flex-wrap">
+          <button
+            onClick={handleDownloadPdf}
+            disabled={isGeneratingPdf}
+            className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-500 text-amber-950 font-bold text-xs sm:text-sm font-sans flex items-center gap-2 shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isGeneratingPdf ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin text-amber-950" />
+                <span>Generating Legal PDF…</span>
+              </>
+            ) : (
+              <>
+                <Download className="w-4 h-4 text-amber-950" />
+                <span>Download Legal PDF 📜</span>
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={handlePrint}
+            className="px-4 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-amber-400/30 text-amber-200 text-xs sm:text-sm font-sans font-medium flex items-center gap-2 transition-all hover:scale-105"
+          >
+            <Printer className="w-4 h-4 text-amber-300" />
+            <span>Print Affidavit</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Legal Document Card */}
-      <div className="relative rounded-3xl p-3.5 sm:p-10 border-2 sm:border-4 border-amber-600/40 bg-[#fdfbf7] text-zinc-900 shadow-2xl shadow-amber-950/40 overflow-hidden font-serif">
+      <div ref={documentRef} className="relative rounded-3xl p-3.5 sm:p-10 border-2 sm:border-4 border-amber-600/40 bg-[#fdfbf7] text-zinc-900 shadow-2xl shadow-amber-950/40 overflow-hidden font-serif">
         {/* Subtle Guilloche & Legal Watermark */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center select-none text-5xl sm:text-9xl font-bold font-mono">
           🦚 SHREY × DIVIJA 🦚
@@ -273,7 +394,7 @@ export default function LifetimeAffidavit() {
               <span className="font-bold flex items-center gap-1">
                 <span>⚡</span> Signature of Laddu (Shrey)
               </span>
-              <div className="flex items-center gap-1.5">
+              <div data-pdf-ignore="true" className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => quickSign("shrey")}
@@ -307,7 +428,7 @@ export default function LifetimeAffidavit() {
                 onTouchEnd={() => stopDrawing("shrey")}
               />
               {!shreySigned && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-zinc-400 text-[11px] font-sans">
+                <div data-pdf-ignore="true" className="absolute inset-0 flex items-center justify-center pointer-events-none text-zinc-400 text-[11px] font-sans">
                   Draw signature here or click [Quick Sign]
                 </div>
               )}
@@ -325,7 +446,7 @@ export default function LifetimeAffidavit() {
               <span className="font-bold flex items-center gap-1">
                 <span>🌸</span> Signature of Jalebi (Divija)
               </span>
-              <div className="flex items-center gap-1.5">
+              <div data-pdf-ignore="true" className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => quickSign("divija")}
@@ -359,7 +480,7 @@ export default function LifetimeAffidavit() {
                 onTouchEnd={() => stopDrawing("divija")}
               />
               {!divijaSigned && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-zinc-400 text-[11px] font-sans">
+                <div data-pdf-ignore="true" className="absolute inset-0 flex items-center justify-center pointer-events-none text-zinc-400 text-[11px] font-sans">
                   Draw signature here or click [Quick Sign]
                 </div>
               )}
@@ -395,19 +516,34 @@ export default function LifetimeAffidavit() {
               </div>
             </div>
 
-            <button
-              onClick={handlePrint}
-              className="px-4 py-2 rounded-xl bg-amber-900 text-amber-50 hover:bg-amber-800 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all shrink-0"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Print Affidavit</span>
-            </button>
+            <div data-pdf-ignore="true" className="flex items-center gap-2 flex-wrap shrink-0">
+              <button
+                onClick={handleDownloadPdf}
+                disabled={isGeneratingPdf}
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-amber-950 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all disabled:opacity-50"
+              >
+                {isGeneratingPdf ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Download className="w-3.5 h-3.5" />
+                )}
+                <span>{isGeneratingPdf ? "Generating…" : "Download PDF 📜"}</span>
+              </button>
+
+              <button
+                onClick={handlePrint}
+                className="px-4 py-2 rounded-xl bg-amber-900 text-amber-50 hover:bg-amber-800 text-xs font-mono font-bold flex items-center gap-1.5 shadow-md transition-all shrink-0"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                <span>Print</span>
+              </button>
+            </div>
           </div>
         )}
 
         {/* Execution CTA Button */}
         {!isExecuted && (
-          <div className="mt-8 text-center pt-2">
+          <div data-pdf-ignore="true" className="mt-8 text-center pt-2">
             <button
               onClick={handleExecuteContract}
               disabled={!shreySigned || !divijaSigned}
