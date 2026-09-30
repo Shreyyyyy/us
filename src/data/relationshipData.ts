@@ -1,166 +1,328 @@
 import { InteractiveQuestion, LoreMilestone, OpenWhenLetter, SongTrack, VoucherItem } from "@/types";
 
-// GF Questions (Tailored thoughtfully for Divija)
+// GF Questions (Tailored thoughtfully for Divija / Jalebi)
 export const GF_QUESTIONS: InteractiveQuestion[] = [
   {
     id: "gf-emotional-battery",
-    title: "Divija's Emotional Battery Status",
+    title: "Jalebi's Emotional Battery Status",
     subtitle: "Calibrating the MSc Psychologist's inner energy reserves today:",
     category: "emotion",
     options: [
       {
-        text: "⚡ 95%+ — Vibrant, bubbly, and ready to tease Shrey endlessly",
-        response: "Warning to Shrey: High playful kalesh probability detected! Proceed with tight hugs and spontaneous laughter.",
-        reaction: "“Bina bole bhi tumhara sparkle dikhta hai!”"
+        text: "⚡ 95%+ — Vibrant, bubbly, and ready to tease Laddu endlessly",
+        response: "Warning to Laddu: High playful kalesh probability detected! Proceed with tight hugs and spontaneous laughter.",
+        reaction: "“Bina bole bhi tumhara sparkle dikhta hai!”",
+        points: 25
       },
       {
         text: "🌸 60% — Decent, but mild overthinking background threads running",
-        response: "Diagnostic: Overthinking cache detected. Shrey is dispatched to provide 1 warm beverage and listen without offering engineer logic.",
-        reaction: "“You don't have to carry the whole world on your shoulders today, Divu.”"
+        response: "Diagnostic: Overthinking cache detected. Laddu is dispatched to provide 1 warm beverage and listen without offering engineer logic.",
+        reaction: "“You don't have to carry the whole world on your shoulders today, Jalebi.”",
+        points: 20
       },
       {
-        text: "🌧️ 20% — Drained by adulting, need Shrey's shoulder to lean on",
-        response: "Priority Alert! All AI models paused. Shrey's designated role: Human pillow + unlimited reassurance + quiet cuddles.",
-        reaction: "“Close your eyes, breathe. I'm right here holding your hand.”"
+        text: "🌧️ 20% — Drained by adulting, need Laddu's shoulder to lean on",
+        response: "Priority Alert! All AI models paused. Laddu's designated role: Human pillow + unlimited reassurance + quiet cuddles.",
+        reaction: "“Close your eyes, breathe. I'm right here holding your hand.”",
+        points: 20
       },
       {
-        text: "😋 Need Paneer, tea & Shrey right now",
+        text: "😋 Need Paneer, tea & Laddu right now",
         response: "Order confirmed: Soul food + your favorite boy dispatched immediately on express delivery!",
-        reaction: "“Food + Us = 100% cure rate.”"
+        reaction: "“Food + Us = 100% cure rate.”",
+        points: 25
       }
     ]
   },
   {
     id: "gf-shrey-debt",
-    title: "What does Shrey legally owe you right now?",
+    title: "What does Laddu legally owe you right now?",
     subtitle: "Select your non-negotiable boyfriend penalty / coupon:",
     category: "love",
     options: [
       {
         text: "🧸 20-minute bear hug without letting go first",
-        response: "Voucher Generated! Shrey is barred from letting go until Divija taps out.",
-        reaction: "“Non-negotiable. Bound by boyfriend law.”"
+        response: "Voucher Generated! Laddu is barred from letting go until Jalebi taps out.",
+        reaction: "“Non-negotiable. Bound by boyfriend law.”",
+        points: 25
       },
       {
         text: "🤫 Listening to me vent for 30 mins with ZERO tech solutions",
         response: "Solution Mode: DISABLED. Active Empathetic Listening Mode: 100% ENGAGED.",
-        reaction: "“Just listening, nodding, and holding your hand. Promised.”"
+        reaction: "“Just listening, nodding, and holding your hand. Promised.”",
+        points: 25
       },
       {
         text: "🚗 Rainy night drive with 'Behkana' on the speakers",
         response: "Weather protocol queued. Windows down, raindrops falling, holding hands at red lights.",
-        reaction: "“Our quietest, happiest place in the whole universe.”"
+        reaction: "“Our quietest, happiest place in the whole universe.”",
+        points: 25
       },
       {
         text: "🕺 2 AM Ranveer Singh dance performance to make me laugh",
-        response: "Sicklot LALALA loaded into Shrey's neural core. Chaos mode initialized!",
-        reaction: "“You'll laugh so hard your stomach hurts.”"
+        response: "Sicklot LALALA loaded into Laddu's neural core. Chaos mode initialized!",
+        reaction: "“You'll laugh so hard your stomach hurts.”",
+        points: 25
       }
     ]
   },
   {
     id: "gf-overthinking-decoder",
-    title: "Divija's Mind Decompressor",
+    title: "Jalebi's Mind Decompressor",
     subtitle: "What is currently occupying the most RAM in that brilliant mind?",
     category: "psychology",
     options: [
       {
         text: "🧠 Analyzing someone's behavioral micro-expression",
-        response: "Psychology student instinct never rests! Shrey's analysis: He's just an open book when he looks at you.",
-        reaction: "“You read minds, but with me, my heart is already in your hands.”"
+        response: "Psychology student instinct never rests! Laddu's analysis: He's just an open book when he looks at you.",
+        reaction: "“You read minds, but with me, my heart is already in your hands.”",
+        points: 25
       },
       {
-        text: "🥺 Missing Shrey's voice and annoying presence",
-        response: "Direct Ping: Shrey is missing his favorite person x1000 right now.",
-        reaction: "“Check your notifications or expect a call soon!”"
+        text: "🥺 Missing Laddu's voice and annoying presence",
+        response: "Direct Ping: Laddu is missing his favorite person x1000 right now.",
+        reaction: "“Check your notifications or expect a call soon!”",
+        points: 25
       },
       {
         text: "⏳ Wondering about our future home and roadmaps",
         response: "Status: Locked and blessed. Cozy lights, warm coffee mugs, and continuous growth together.",
-        reaction: "“Kanha ji is sketching our chapters. Have no fear.”"
+        reaction: "“Kanha ji is sketching our chapters. Have no fear.”",
+        points: 25
       },
       {
         text: "✨ Just feeling immensely grateful and soft today",
         response: "Sweetness Overflow! Heart resonance at theoretical maximum.",
-        reaction: "“You make life feel poetic, Divija.”"
+        reaction: "“You make life feel poetic, Jalebi.”",
+        points: 25
+      }
+    ]
+  },
+  {
+    id: "gf-metro-trek-truth",
+    title: "The NCR Metro Mystery",
+    subtitle: "Why did Laddu ride metro lines across all of Delhi-NCR just for 45 minutes with you?",
+    category: "love",
+    options: [
+      {
+        text: "A: Because 45 minutes with Jalebi resets his entire universe and makes everything worth it",
+        response: "CORRECT! That quiet hour in the corner of a cafe was worth 1000 metro rides.",
+        reaction: "“That look in his eyes said it all. Devotion at 100%.”",
+        points: 25
+      },
+      {
+        text: "B: He just really loves the AC on the Delhi Metro Yellow Line",
+        response: "Hilarious, but false! Nobody loves the Yellow Line crowd in Delhi summer except to see Jalebi!",
+        reaction: "“Only for you, Jalebi!”",
+        points: 15
+      },
+      {
+        text: "C: Divine alignment: Kanha ji was weaving your threads together",
+        response: "Sacred truth: Every transit card swipe was part of the cosmic masterplan.",
+        reaction: "“Destiny orchestrated every single meeting.”",
+        points: 25
+      },
+      {
+        text: "D: He wanted to practice his nervous smile before meeting you",
+        response: "Aww! He definitely fixed his hair and glasses in every metro window reflection!",
+        reaction: "“Guilty as charged!”",
+        points: 20
+      }
+    ]
+  },
+  {
+    id: "gf-door-hiding-test",
+    title: "The Legendary Door-Hiding Incident",
+    subtitle: "When the brother unexpectedly knocked, what was the most heroic thing about Laddu?",
+    category: "humor",
+    options: [
+      {
+        text: "A: He merged with the door hinges like an elite stealth commando",
+        response: "Undisputed fact! Heart rate 190 BPM, oxygen consumption reduced to 5%.",
+        reaction: "“Masterclass in romantic stealth operations.”",
+        points: 25
+      },
+      {
+        text: "B: His willingness to endure pure adrenaline just to spend time with you",
+        response: "True commitment: Some boys bring flowers, Laddu braves high-stakes domestic espionage.",
+        reaction: "“Now THAT is true love!”",
+        points: 25
+      },
+      {
+        text: "C: The shared suppressed giggles afterwards that became couple mythology",
+        response: "Priceless! The moment you both laughed until your eyes teared up.",
+        reaction: "“Forever our favorite story to tell.”",
+        points: 25
+      },
+      {
+        text: "D: All of the above — officially immortalized in our lifetime contract!",
+        response: "MAXIMUM COMPATIBILITY! Case closed and sealed in the archives.",
+        reaction: "“100/100 Jalebi Wisdom!”",
+        points: 25
       }
     ]
   }
 ];
 
-// BF Questions (Tailored thoughtfully for Shrey)
+// BF Questions (Tailored thoughtfully for Shrey / Laddu)
 export const BF_QUESTIONS: InteractiveQuestion[] = [
   {
     id: "bf-neural-load",
-    title: "Shrey's CPU & Tensor Load Diagnostic",
-    subtitle: "AI Engineer sanity calibration from Divija:",
+    title: "Laddu's CPU & Tensor Load Diagnostic",
+    subtitle: "AI Engineer sanity calibration from Jalebi:",
     category: "code",
     options: [
       {
         text: "🔥 Loss is diverging / CUDA out of memory / Pain",
-        response: "Prescription from Dr. Divija: Step away from terminal. Drink water, look at Divija's photo, and take 3 deep breaths.",
-        reaction: "“The bug will yield, Shrey. You're brilliant, but don't melt your brain.”"
+        response: "Prescription from Dr. Jalebi: Step away from terminal. Drink water, look at Jalebi's photo, and take 3 deep breaths.",
+        reaction: "“The bug will yield, Laddu. You're brilliant, but don't melt your brain.”",
+        points: 20
       },
       {
         text: "🚀 Weights converged! Zero hallucinations! We are flying!",
-        response: "Divija's reaction: YAAAY! Proud girlfriend mode unlocked! High five + dessert ordered.",
-        reaction: "“I never doubted you for a second, my genius boy.”"
+        response: "Jalebi's reaction: YAAAY! Proud girlfriend mode unlocked! High five + paneer feast ordered.",
+        reaction: "“I never doubted you for a second, my genius boy.”",
+        points: 25
       },
       {
-        text: "🕺 2 AM Ranveer Singh mode activated (Pure Shrey chaos)",
+        text: "🕺 2 AM Ranveer Singh mode activated (Pure Laddu chaos)",
         response: "Diagnosis: Dopamine spike + excessive caffeine. Go dance, then sleep, Laddoo!",
-        reaction: "“Bhalu, rest those eyes before they turn into binary code.”"
+        reaction: "“Bhalu, rest those eyes before they turn into binary code.”",
+        points: 25
       },
       {
         text: "🧀 Paneer fuel level critically low",
-        response: "Immediate dispatch: Re-fuel with protein and text Divija before returning to matrix.",
-        reaction: "“Eat properly! I'm watching you from here.”"
+        response: "Immediate dispatch: Re-fuel with protein and text Jalebi before returning to matrix.",
+        reaction: "“Eat properly! I'm watching you from here.”",
+        points: 20
       }
     ]
   },
   {
     id: "bf-gf-decoder-test",
-    title: "Divija Code Interpreter Challenge",
-    subtitle: "Scenario: Divija sends a message containing only: 'Hhhmmm.' What is the loss gradient?",
+    title: "Jalebi Code Interpreter Challenge",
+    subtitle: "Scenario: Jalebi sends a message containing only: 'Hhhmmm.' What is the loss gradient?",
     category: "psychology",
     options: [
       {
         text: "A: She is totally chill and just acknowledging the message",
         response: "INCORRECT! Massive penalty loss (+9999.0). Never assume 'Hhhmmm' is chill!",
-        reaction: "“Boyfriend rookie error! Red alert!”"
+        reaction: "“Boyfriend rookie error! Red alert!”",
+        points: 0
       },
       {
         text: "B: Call her immediately, ask with gentle voice: 'Batao kya hua baby?'",
-        response: "OPTIMAL GRADIENT! Loss = 0.000. Divija feels instantly seen, valued, and loved.",
-        reaction: "“100% correct calibration. You know your girl so well.”"
+        response: "OPTIMAL GRADIENT! Loss = 0.000. Jalebi feels instantly seen, valued, and loved.",
+        reaction: "“100% correct calibration. You know your girl so well.”",
+        points: 25
       },
       {
         text: "C: Send 5 reels of puppies and paneer recipes",
-        response: "PASSABLE fallback (+50 points). Cute diversion, but follow up with a call!",
-        reaction: "“Distraction works, but your voice works better.”"
+        response: "PASSABLE fallback (+15 points). Cute diversion, but follow up with a call!",
+        reaction: "“Distraction works, but your voice works better.”",
+        points: 15
+      },
+      {
+        text: "D: Offer 3 technical solutions and a Gantt chart",
+        response: "CATASTROPHIC ERROR! She is an MSc Psychologist, not an agile sprint board!",
+        reaction: "“Listen and hug, do NOT project manage her emotions!”",
+        points: 5
+      }
+    ]
+  },
+  {
+    id: "bf-parallel-universes",
+    title: "Quantum Multi-Agent Convergence",
+    subtitle: "In a mathematical simulation of 10,000 parallel multiverses, how many times do you choose Jalebi?",
+    category: "code",
+    options: [
+      {
+        text: "A: Exactly 10,000 out of 10,000 with zero error tolerance",
+        response: "MATHEMATICAL PERFECTION! Deterministic love invariant across all space-time manifolds.",
+        reaction: "“Loss = 0.00000. Divija is your global minimum and maximum.”",
+        points: 25
+      },
+      {
+        text: "B: 9,999 times (1 universe had an unresolved segmentation fault)",
+        response: "Debugging required! Even with a segfault, your heart should compile for Jalebi!",
+        reaction: "“Close, but re-run the script with --force-love!”",
+        points: 15
+      },
+      {
+        text: "C: 10,000 + 7 additional rebirths under Kanha ji's grace",
+        response: "SACRED OPTIMALITY! The cosmic contract covers this life and all future iterations.",
+        reaction: "“Crowned as the most devoted AI boy in existence.”",
+        points: 25
+      },
+      {
+        text: "D: More times than the parameter count of GPT-5",
+        response: "Infinitely scalable devotion! GPU memory cannot contain this romance.",
+        reaction: "“100% approved by Jalebi.”",
+        points: 25
+      }
+    ]
+  },
+  {
+    id: "bf-brother-knocking",
+    title: "Tactical Door Protocol Reflex",
+    subtitle: "Scenario: The brother's footsteps approach the door. What is your immediate tactical move?",
+    category: "humor",
+    options: [
+      {
+        text: "A: Disappear behind the door and hold breath like a Navy SEAL",
+        response: "HISTORICAL RE-ENACTMENT! It worked once, it will work forever.",
+        reaction: "“Hall of Fame romantic stealth moment.”",
+        points: 25
+      },
+      {
+        text: "B: Pretend to be a high-end designer coat rack",
+        response: "Bold camouflage! Good thing you wear stylish jackets.",
+        reaction: "“A for creativity, A+ for bravery.”",
+        points: 20
+      },
+      {
+        text: "C: Look at Jalebi and communicate entire paragraphs through eye contact alone",
+        response: "TELEPATHY UNLOCKED: 'Bina bole jo nazar keh jaaye' at highest stakes!",
+        reaction: "“Psychology + AI telepathy in action.”",
+        points: 25
+      },
+      {
+        text: "D: All of the above while planning your future wedding vows",
+        response: "TRUE VISIONARY! Turning panic into lifelong romance.",
+        reaction: "“Legendary boyfriend energy.”",
+        points: 25
       }
     ]
   },
   {
     id: "bf-reassurance-anchor",
-    title: "Shrey's Reassurance Vault",
+    title: "Laddu's Reassurance Vault",
     subtitle: "When the weight of big ambitions feels heavy:",
     category: "care",
     options: [
       {
         text: "🏔️ Feeling pressure to achieve everything yesterday",
-        response: "From Divija: Remember how far you've come from Christ University. You are building monumental things. I am so proud of you, every single day.",
-        reaction: "“Take it one step at a time. I'm standing by you through all of it.”"
+        response: "From Jalebi: Remember how far you've come from Christ University. You are building monumental things. I am so proud of you, every single day.",
+        reaction: "“Take it one step at a time. I'm standing by you through all of it.”",
+        points: 25
       },
       {
         text: "🚇 Remembering the long metro rides across NCR",
-        response: "From Divija: Travelling hours across NCR just to steal 45 minutes together... that effort lives in my heart forever. That's why I know our foundation is unbreakable.",
-        reaction: "“I noticed every single step, Shrey.”"
+        response: "From Jalebi: Travelling hours across NCR just to steal 45 minutes together... that effort lives in my heart forever. That's why I know our foundation is unbreakable.",
+        reaction: "“I noticed every single step, Laddu.”",
+        points: 25
       },
       {
         text: "🦚 Need spiritual quiet & peace",
-        response: "From Divija: Kanha ji has guided us through every unspoken glance to where we are today. Surrender the worries, keep doing your karma.",
-        reaction: "“Hare Krishna. Peace is already yours.”"
+        response: "From Jalebi: Kanha ji has guided us through every unspoken glance to where we are today. Surrender the worries, keep doing your karma.",
+        reaction: "“Hare Krishna. Peace is already yours.”",
+        points: 25
+      },
+      {
+        text: "❤️ Just need to hear Jalebi say 'You're my favorite boy'",
+        response: "From Jalebi: You are my favorite boy, my brightest mind, and the only Laddu in my universe.",
+        reaction: "“Always and forever, Shrey.”",
+        points: 25
       }
     ]
   }

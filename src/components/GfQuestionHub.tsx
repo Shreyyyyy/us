@@ -100,6 +100,33 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
         <p className="text-sm sm:text-base text-zinc-300">
           Designed for my sweet MSc Psychologist, cute overthinker, and my Jalebi. Tap an option below to calibrate our frequency:
         </p>
+
+        {/* MCQ Calibration Progress */}
+        <div className="max-w-md mx-auto pt-2">
+          <div className="p-3.5 rounded-2xl bg-white/5 border border-pink-500/25 backdrop-blur-xl flex items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5">
+              <span className="w-7 h-7 rounded-full bg-pink-500/20 text-pink-300 font-mono font-bold flex items-center justify-center shrink-0">
+                {Object.keys(selectedAnswers).length}/{GF_QUESTIONS.length}
+              </span>
+              <div className="text-left">
+                <span className="font-mono text-zinc-200 font-bold block text-xs">
+                  Jalebi MCQ Calibration
+                </span>
+                <span className="text-pink-300/80 text-[10px] block">
+                  {Object.keys(selectedAnswers).length === GF_QUESTIONS.length
+                    ? "✨ 100% Calibrated: Certified Queen of Laddu's Heart"
+                    : "Select an option in each MCQ to tune wavelength"}
+                </span>
+              </div>
+            </div>
+            <div className="w-24 sm:w-28 h-2 rounded-full bg-white/10 overflow-hidden shrink-0">
+              <div
+                className="h-full bg-gradient-to-r from-pink-500 to-rose-400 transition-all duration-500 rounded-full"
+                style={{ width: `${(Object.keys(selectedAnswers).length / GF_QUESTIONS.length) * 100}%` }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Interactive Questions Grid */}
@@ -155,7 +182,7 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
               {selectedIdx !== undefined && (
                 <div className="mt-4 p-3.5 rounded-2xl bg-pink-950/40 border border-pink-500/30 text-xs space-y-1.5 animate-fadeIn">
                   <div className="font-mono text-[10px] uppercase font-bold tracking-wider text-pink-300 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-pink-400" /> Shrey&apos;s Designated Response:
+                    <Sparkles className="w-3 h-3 text-pink-400" /> Laddu&apos;s Designated Response:
                   </div>
                   <p className="text-zinc-200 italic font-serif leading-relaxed">
                     {q.options[selectedIdx].response}

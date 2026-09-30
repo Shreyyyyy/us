@@ -79,6 +79,33 @@ export default function BfQuestionHub({ onNotify }: BfQuestionHubProps) {
         <p className="text-sm sm:text-base text-zinc-300">
           Tailored for my favorite black-framed AI engineer, paneer lover, and chaotic midnight dancer. Calibrate your tensors below:
         </p>
+
+        {/* MCQ Diagnostic Progress */}
+        <div className="max-w-md mx-auto pt-2">
+          <div className="p-3.5 rounded-2xl bg-white/5 border border-sky-500/25 backdrop-blur-xl flex items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5">
+              <span className="w-7 h-7 rounded-full bg-sky-500/20 text-sky-300 font-mono font-bold flex items-center justify-center shrink-0">
+                {Object.keys(selectedAnswers).length}/{BF_QUESTIONS.length}
+              </span>
+              <div className="text-left">
+                <span className="font-mono text-zinc-200 font-bold block text-xs">
+                  Laddu Tensor Diagnostic
+                </span>
+                <span className="text-sky-300/80 text-[10px] block">
+                  {Object.keys(selectedAnswers).length === BF_QUESTIONS.length
+                    ? "⚡ 100% Converged: Certified Supreme Devoted Laddu"
+                    : "Select an option in each MCQ to calibrate neural state"}
+                </span>
+              </div>
+            </div>
+            <div className="w-24 sm:w-28 h-2 rounded-full bg-white/10 overflow-hidden shrink-0">
+              <div
+                className="h-full bg-gradient-to-r from-sky-500 to-indigo-400 transition-all duration-500 rounded-full"
+                style={{ width: `${(Object.keys(selectedAnswers).length / BF_QUESTIONS.length) * 100}%` }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Interactive Questions Grid */}
@@ -134,7 +161,7 @@ export default function BfQuestionHub({ onNotify }: BfQuestionHubProps) {
               {selectedIdx !== undefined && (
                 <div className="mt-4 p-3.5 rounded-2xl bg-sky-950/40 border border-sky-500/30 text-xs space-y-1.5 animate-fadeIn">
                   <div className="font-mono text-[10px] uppercase font-bold tracking-wider text-sky-300 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-sky-400" /> Divija&apos;s Prescribed Guidance:
+                    <Sparkles className="w-3 h-3 text-sky-400" /> Jalebi&apos;s Prescribed Guidance:
                   </div>
                   <p className="text-zinc-200 italic font-serif leading-relaxed">
                     {q.options[selectedIdx].response}

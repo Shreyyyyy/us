@@ -16,6 +16,7 @@ import OpenWhenVault from "@/components/OpenWhenVault";
 import CareChecklist from "@/components/CareChecklist";
 import TerminalCLI from "@/components/TerminalCLI";
 import FutureRoadmap from "@/components/FutureRoadmap";
+import LifetimeAffidavit from "@/components/LifetimeAffidavit";
 import ForbiddenProtocol from "@/components/ForbiddenProtocol";
 import AudioModal from "@/components/AudioModal";
 import Toast from "@/components/Toast";
@@ -34,14 +35,13 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
+    // Always return to home identity gate on every reload
+    setIsVerified(false);
     try {
+      localStorage.removeItem("identity_verified");
       const savedRole = localStorage.getItem("relationship_role") as UserRole;
       if (savedRole && (savedRole === "gf" || savedRole === "bf" || savedRole === "together")) {
         setRole(savedRole);
-      }
-      const verified = localStorage.getItem("identity_verified");
-      if (verified === "true") {
-        setIsVerified(true);
       }
     } catch {
       // ignore
@@ -101,11 +101,6 @@ export default function Home() {
           onVerified={(chosenRole) => {
             setIsVerified(true);
             handleRoleChange(chosenRole);
-            try {
-              localStorage.setItem("identity_verified", "true");
-            } catch {
-              // ignore
-            }
             showNotification(
               chosenRole === "gf"
                 ? "🌸 Identity Verified: Welcome home, Jalebi!"
@@ -198,6 +193,9 @@ export default function Home() {
 
         {/* Interactive CLI Terminal */}
         <TerminalCLI />
+
+        {/* Sacred Non-Revocable Lifetime Booking Affidavit */}
+        <LifetimeAffidavit />
 
         {/* Future Roadmaps */}
         <FutureRoadmap />

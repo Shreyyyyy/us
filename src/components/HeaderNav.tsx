@@ -147,6 +147,12 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell, onReveri
               Letters
             </button>
             <button
+              onClick={() => scrollTo("contract")}
+              className="px-2.5 py-1 text-xs text-amber-300 hover:text-amber-200 font-semibold rounded-lg bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 transition-all flex items-center gap-1"
+            >
+              <span>Affidavit 📜</span>
+            </button>
+            <button
               onClick={() => scrollTo("terminal")}
               className="px-2.5 py-1 text-xs text-zinc-300 hover:text-pink-300 font-medium rounded-lg hover:bg-white/5 transition-colors"
             >
@@ -225,6 +231,12 @@ export default function HeaderNav({ role, onRoleChange, onTriggerSpell, onReveri
               className="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-200 hover:text-pink-300 hover:bg-white/10 transition-colors"
             >
               Letters
+            </button>
+            <button
+              onClick={() => scrollTo("contract")}
+              className="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-200 border border-amber-500/30 hover:bg-amber-500/30 transition-colors font-semibold"
+            >
+              Affidavit 📜
             </button>
             <button
               onClick={() => scrollTo("terminal")}

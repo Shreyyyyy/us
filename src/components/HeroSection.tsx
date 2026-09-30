@@ -67,6 +67,18 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
         {heroContent.subtitle}
       </p>
 
+      {/* Quick Action Badges */}
+      <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+        <a
+          href="#contract"
+          onClick={() => sound.playClick()}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 via-pink-500/20 to-sky-500/20 hover:from-amber-500/30 hover:to-sky-500/30 border border-amber-400/40 text-amber-200 text-xs font-mono font-bold shadow-lg transition-all hover:scale-105 active:scale-95"
+        >
+          <span>📜 Sign Lifetime Booking Contract</span>
+          <span className="text-[10px] bg-amber-400/20 px-2 py-0.5 rounded-full border border-amber-400/30">Section 143(3)</span>
+        </a>
+      </div>
+
       {/* Hero Stage Area with Flanking Candid Polaroids */}
       <div className="relative">
         {/* Left Floating Polaroid - Cinema Kiss */}
