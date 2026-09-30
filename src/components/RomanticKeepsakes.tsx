@@ -218,7 +218,7 @@ export default function RomanticKeepsakes() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-zinc-500">Subject:</span>
-                    <span className="text-pink-300">Shrey & Chintu ❤️</span>
+                    <span className="text-pink-300">Laddu & Jalebi ❤️</span>
                   </div>
                 </div>
               </div>

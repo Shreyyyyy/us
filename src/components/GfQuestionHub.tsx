@@ -92,13 +92,13 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/25 text-pink-300 text-xs font-mono tracking-wider">
           <Heart className="w-3.5 h-3.5 fill-current text-pink-400" />
-          <span>CHINTU&apos;S REFLECTION SANCTUARY</span>
+          <span>JALEBI&apos;S REFLECTION SANCTUARY</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight">
-          Thoughtful Questions for Chintu 🌸
+          Thoughtful Questions for Jalebi 🌸
         </h2>
         <p className="text-sm sm:text-base text-zinc-300">
-          Designed for my quiet MSc Psychologist, cute overthinker, and my Chintu. Tap an option below to calibrate our frequency:
+          Designed for my sweet MSc Psychologist, cute overthinker, and my Jalebi. Tap an option below to calibrate our frequency:
         </p>
       </div>
 
@@ -182,10 +182,10 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
             </span>
             <div>
               <h3 className="font-serif font-bold text-xl text-white">
-                Chintu&apos;s Boyfriend Vouchers 🎟️
+                Jalebi&apos;s Boyfriend Vouchers 🎟️
               </h3>
               <p className="text-xs text-zinc-400">
-                Non-negotiable coupons Shrey is legally obligated to honor:
+                Non-negotiable coupons Laddu (Shrey) is legally obligated to honor:
               </p>
             </div>
           </div>
@@ -230,10 +230,10 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
               </span>
               <div>
                 <h3 className="font-serif font-bold text-xl text-white">
-                  Chintu&apos;s Secret Whisper Box 💌
+                  Jalebi&apos;s Secret Whisper Box 💌
                 </h3>
                 <p className="text-xs text-zinc-400">
-                  Drop a thought, sweet complaint, or craving that saves to Shrey&apos;s boyfriend view:
+                  Drop a thought, sweet complaint, or craving that saves to Laddu&apos;s boyfriend view:
                 </p>
               </div>
             </div>

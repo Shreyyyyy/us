@@ -57,7 +57,7 @@ export default function BfQuestionHub({ onNotify }: BfQuestionHubProps) {
     setShreyReply("");
     setReplySaved(true);
     setTimeout(() => setReplySaved(false), 4000);
-    onNotify("⚡ Shrey's reply encrypted into the Shared Vault for Divija!", "success");
+    onNotify("⚡ Laddu's reply encrypted into the Shared Vault for Jalebi!", "success");
     confetti({
       particleCount: 40,
       spread: 60,
@@ -71,10 +71,10 @@ export default function BfQuestionHub({ onNotify }: BfQuestionHubProps) {
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300 text-xs font-mono tracking-wider">
           <Zap className="w-3.5 h-3.5 fill-current text-sky-400" />
-          <span>BOYFRIEND REASONING DIAGNOSTICS</span>
+          <span>LADDU&apos;S REASONING DIAGNOSTICS</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight">
-          Thoughtful Questions for Shrey ⚡
+          Thoughtful Questions for Laddu ⚡
         </h2>
         <p className="text-sm sm:text-base text-zinc-300">
           Tailored for my favorite black-framed AI engineer, paneer lover, and chaotic midnight dancer. Calibrate your tensors below:
@@ -217,7 +217,7 @@ export default function BfQuestionHub({ onNotify }: BfQuestionHubProps) {
               <textarea
                 value={shreyReply}
                 onChange={(e) => setShreyReply(e.target.value)}
-                placeholder="e.g., 'Taking a 10 min break right now. Miss you immensely my Chintu.' or 'Models converged, let me order paneer for us!'"
+                placeholder="e.g., 'Taking a 10 min break right now. Miss you immensely my Jalebi.' or 'Models converged, let me order paneer for us!'"
                 rows={3}
                 className="w-full rounded-2xl bg-black/40 border border-white/10 focus:border-sky-400 text-white placeholder-zinc-500 p-3.5 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-sky-400 transition-all resize-none"
               />

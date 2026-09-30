@@ -18,24 +18,24 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
 
   const heroContent = {
     gf: {
-      terminal: "INITIALIZING CHINTU_OS v2.0 // PSYCH_HEARTBEAT_SYNCED ✓",
-      name: "Chintu 🌸",
-      subtitle: "A dreamy, enchanted haven designed for my quiet MSc Psychologist, my favorite human, and the queen of my heart.",
-      badge: "CHINTU MODE ACTIVE",
+      terminal: "INITIALIZING JALEBI_OS v2.0 // PSYCH_HEARTBEAT_SYNCED ✓",
+      name: "Divija (Jalebi) 🌸",
+      subtitle: "A dreamy, enchanted haven designed for my sweet MSc Psychologist, my favorite human, and the queen of my heart.",
+      badge: "JALEBI MODE ACTIVE",
       badgeColor: "text-pink-300 border-pink-500/30 bg-pink-500/10",
       quote: "“Bina bole jo nazar keh jaaye… haule haule dil ko dil se milaaye.”",
     },
     bf: {
-      terminal: "INITIALIZING BOYFRIEND_OS v2.0 // NEURAL_PAIR_INIT_SUCCESS ✓",
-      name: "Shrey ⚡",
+      terminal: "INITIALIZING LADDU_OS v2.0 // NEURAL_PAIR_INIT_SUCCESS ✓",
+      name: "Shrey (Laddu) ⚡",
       subtitle: "A dreamy, enchanted corner of the web made for my favourite nerdy, black-frame wearing, paneer-eating, infinitely ambitious AI engineer.",
-      badge: "BOYFRIEND MODE ACTIVE",
+      badge: "LADDU MODE ACTIVE",
       badgeColor: "text-sky-300 border-sky-500/30 bg-sky-500/10",
-      quote: "“In an infinite universe of mathematical noise, my heart converged on Chintu with zero error tolerance.”",
+      quote: "“In an infinite universe of mathematical noise, my heart converged on Jalebi with zero error tolerance.”",
     },
     together: {
       terminal: "INITIALIZING CELESTIAL_DUO_OS v∞ // DUAL_ORBITS_LOCKED ✓",
-      name: "Shrey & Chintu ❤️",
+      name: "Laddu & Jalebi ❤️",
       subtitle: "Where quiet psychology meets machine learning code, wrapped in Kanha ji's blessings and endless love.",
       badge: "CELESTIAL DUO HARMONY",
       badgeColor: "text-amber-300 border-amber-500/30 bg-amber-500/10",
@@ -103,7 +103,7 @@ export default function HeroSection({ role, onCastSpell, onReminder }: HeroSecti
             openPhoto(
               "/photos/photo-2.jpeg",
               "That Look (100% Devotion)",
-              "Shrey completely captivated by Chintu. Chintu with her little pink rose, holding hands. The gaze that says more than a million neural networks could ever articulate."
+              "Shrey (Laddu) completely captivated by Jalebi. Jalebi with her little pink rose, holding hands. The gaze that says more than a million neural networks could ever articulate."
             )
           }
           className="hidden xl:block absolute -right-12 top-20 z-20 w-44 bg-white/95 p-3 pb-5 rounded-2xl shadow-2xl shadow-pink-950/60 rotate-[4deg] hover:rotate-0 hover:scale-110 transition-all duration-300 cursor-pointer group"

@@ -72,7 +72,7 @@ export default function Home() {
   const handleRandomReminder = () => {
     const reminders = [
       "In case your thoughts are racing: your favorite person loves you immensely.",
-      "You are my sunshine, my Chintu, my whole heart. Never forget that.",
+      "You are my sunshine, my Jalebi, my whole heart. Never forget that.",
       "Travelling miles on the metro just to sit together for an hour—that memory lives in our hearts forever.",
       "Kanha ji is always protecting us. You are never alone in any battle.",
       "Self-care protocol: Go drink a glass of water, relax your jaw, and smile."
@@ -86,7 +86,7 @@ export default function Home() {
       <div className="min-h-screen bg-[#07050d] text-white flex items-center justify-center font-serif text-xl">
         <div className="flex items-center gap-3">
           <Sparkles className="w-6 h-6 text-pink-400 animate-spin" />
-          <span>Calibrating Shrey × Chintu Universe...</span>
+          <span>Calibrating Laddu × Jalebi Universe...</span>
         </div>
       </div>
     );
@@ -108,9 +108,9 @@ export default function Home() {
             }
             showNotification(
               chosenRole === "gf"
-                ? "🌸 Identity Verified: Welcome home, Chintu!"
+                ? "🌸 Identity Verified: Welcome home, Jalebi!"
                 : chosenRole === "bf"
-                ? "⚡ Identity Verified: Welcome home, Shrey!"
+                ? "⚡ Identity Verified: Welcome home, Laddu!"
                 : "✨ Identity Verified: Celestial Harmony Unlocked!",
               "success"
             );
@@ -209,7 +209,7 @@ export default function Home() {
         <footer className="text-center pt-12 pb-6 border-t border-white/10 text-xs text-zinc-400 space-y-2 font-sans">
           <div className="flex items-center justify-center gap-1.5 text-pink-400 text-sm">
             <Heart className="w-4 h-4 fill-current" />
-            <span className="font-serif">Engineered with endless devotion for Shrey & Chintu</span>
+            <span className="font-serif">Engineered with endless devotion for Laddu & Jalebi</span>
           </div>
           <p className="text-[11px] text-zinc-500 font-mono">
             Model weights frozen forever. Zero updates, zero rollbacks. Kanha ji protected 🦚🔒

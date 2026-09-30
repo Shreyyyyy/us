@@ -61,7 +61,7 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
       "🌸 Obliviate! Wiping out all self-doubt from my brilliant engineer's mind 🪄",
     ];
     const picked = msgs[Math.floor(Math.random() * msgs.length)];
-    setBubbleText("“Amortentia! You're stuck with your Chintu forever!”");
+    setBubbleText("“Amortentia! You're stuck with your Jalebi forever!”");
     onCastSpell(picked);
   };
 
@@ -134,7 +134,7 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
             </svg>
           </div>
           <div className="mt-2 text-center">
-            <span className="font-serif font-bold text-sm text-sky-200 block">Shrey</span>
+            <span className="font-serif font-bold text-sm text-sky-200 block">Shrey (Laddu)</span>
             <span className="font-mono text-[10px] text-sky-400/80 bg-sky-950/60 px-2 py-0.5 rounded-full border border-sky-500/20">
               AI Wizard 🪄
             </span>
@@ -192,7 +192,7 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
             </svg>
           </div>
           <div className="mt-2 text-center">
-            <span className="font-serif font-bold text-sm text-pink-200 block">Divija (Chintu)</span>
+            <span className="font-serif font-bold text-sm text-pink-200 block">Divija (Jalebi)</span>
             <span className="font-mono text-[10px] text-pink-400/80 bg-pink-950/60 px-2 py-0.5 rounded-full border border-pink-500/20">
               Psych Queen 🌸
             </span>

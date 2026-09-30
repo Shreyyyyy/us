@@ -217,7 +217,7 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "The MCA Cool Guy Meets Quiet MSc Psychology Girl",
     description: "Two vastly different worlds on the same campus. He was the popular nerdy tech enthusiast with black frames; she was the observant, gentle psychology scholar. The universe was already setting the dominoes in motion.",
     icon: "🌱",
-    loreSecret: "Fun fact: Chintu noticed the quiet intensity behind his nerdy spectacles long before he realized."
+    loreSecret: "Fun fact: Jalebi noticed the quiet intensity behind his nerdy spectacles long before he realized."
   },
   {
     year: "Chapter 2",
@@ -236,10 +236,10 @@ export const LORE_TIMELINE: LoreMilestone[] = [
     subtitle: "Miles across Delhi-NCR for 45 stolen minutes",
     description: "Switching yellow lines, blue lines, crowded metro platforms in Delhi heat—just to sit beside each other for an hour before heading back. Unspoken devotion in every single transit card swipe.",
     icon: "🚇",
-    loreSecret: "Chintu always noticed: 'He travelled all this way just to see me smile.' It meant everything.",
+    loreSecret: "Jalebi always noticed: 'He travelled all this way just to see me smile.' It meant everything.",
     photo: "/photos/photo-2.jpeg",
     photoTag: "100% Attention Matrix",
-    photoCaption: "That look in the mall: Shrey mesmerized by Chintu with her pink rose."
+    photoCaption: "That look in the mall: Shrey (Laddu) mesmerized by Jalebi with her pink rose."
   },
   {
     year: "Chapter 4",
@@ -319,7 +319,7 @@ export const OPEN_WHEN_LETTERS: OpenWhenLetter[] = [
     icon: "🌙",
     preview: "When your brain is running 50 background processes at 2 AM...",
     body: "Shut down your mental browser tabs. Nothing needs to be resolved tonight. The world can wait until the sun rises. Imagine our future living room with warm fairy lights, soft rain pattering on the glass, and our quiet laughter. You are safe, you are loved, and tomorrow has fresh grace waiting for you.",
-    ps: "P.S. Goodnight my Chintu. Sleep peacefully, wrapped in my love."
+    ps: "P.S. Goodnight my Jalebi. Sleep peacefully, wrapped in my love."
   },
   {
     id: "reassure",
@@ -334,7 +334,7 @@ export const OPEN_WHEN_LETTERS: OpenWhenLetter[] = [
     title: "Need a Quick Laugh",
     icon: "😂",
     preview: "Emergency serotonin injection for your face...",
-    body: "Reminder: Somewhere in an alternate universe, you are still hiding behind that door while the brother is knocking, wondering if you should jump out the window or pretend to be a coat rack. Also reminder: You are my brilliant boy, I am your Chintu, and together we run our own happy chaotic world!",
+    body: "Reminder: Somewhere in an alternate universe, you are still hiding behind that door while the brother is knocking, wondering if you should jump out the window or pretend to be a coat rack. Also reminder: You are my brilliant Laddu, I am your Jalebi, and together we run our own happy chaotic world!",
     ps: "P.S. Smile right now! Yes, I saw that half-smile."
   },
   {

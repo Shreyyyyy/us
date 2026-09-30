@@ -83,7 +83,7 @@ export default function LoreTimeline() {
                         “{item.photoCaption}”
                       </span>
                       <span className="font-mono text-[10px] text-amber-300/80 block">
-                        ✦ Authentic moment • Shrey & Chintu
+                        ✦ Authentic moment • Laddu & Jalebi
                       </span>
                     </div>
                   </div>
