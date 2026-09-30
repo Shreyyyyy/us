@@ -121,7 +121,7 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen selection:bg-pink-500/30 selection:text-pink-100 overflow-x-hidden">
+    <main className="relative min-h-screen selection:bg-pink-500/30 selection:text-pink-100 overflow-x-hidden pb-20 sm:pb-8">
       {/* Background Animated Stardust */}
       <BackgroundStars />
 

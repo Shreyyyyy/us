@@ -12,6 +12,7 @@ interface GfQuestionHubProps {
 
 export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
+  const [activeStep, setActiveStep] = useState(0);
   const [secretNote, setSecretNote] = useState("");
   const [savedNotes, setSavedNotes] = useState<string[]>([]);
   const [noteSent, setNoteSent] = useState(false);
@@ -129,46 +130,73 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
         </div>
       </div>
 
-      {/* Interactive Questions Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {GF_QUESTIONS.map((q) => {
-          const selectedIdx = selectedAnswers[q.id];
+      {/* Sleek Step-by-Step Question Stepper (Clean, Focused, Uncrowded) */}
+      <div className="max-w-2xl mx-auto space-y-4">
+        {/* Step Indicator Pills */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+          {GF_QUESTIONS.map((q, idx) => {
+            const isAnswered = selectedAnswers[q.id] !== undefined;
+            const isCurrent = activeStep === idx;
+            return (
+              <button
+                key={q.id}
+                onClick={() => {
+                  sound.playClick();
+                  setActiveStep(idx);
+                }}
+                className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
+                  isCurrent
+                    ? "bg-pink-500 text-white shadow-lg shadow-pink-500/30 scale-105"
+                    : isAnswered
+                    ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                    : "bg-white/5 text-zinc-400 border border-white/10 hover:text-white"
+                }`}
+              >
+                <span>Q{idx + 1}</span>
+                {isAnswered && <CheckCircle2 className="w-3 h-3 text-emerald-400" />}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Current Active Question Card */}
+        {(() => {
+          const currentQ = GF_QUESTIONS[activeStep] || GF_QUESTIONS[0];
+          const selectedIdx = selectedAnswers[currentQ.id];
           return (
-            <div
-              key={q.id}
-              className="glass-card rounded-3xl p-6 flex flex-col justify-between border-pink-500/20 hover:border-pink-500/40 relative overflow-hidden"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
+            <div className="glass-card rounded-3xl p-5 sm:p-7 border-pink-500/30 shadow-2xl relative overflow-hidden animate-fadeIn">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-xs">
                   <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-pink-400 bg-pink-950/60 px-2.5 py-1 rounded-full border border-pink-500/20">
-                    {q.category}
+                    {currentQ.category}
                   </span>
-                  {selectedIdx !== undefined && (
-                    <span className="text-xs text-emerald-400 flex items-center gap-1 font-mono font-medium">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> Calibrated
-                    </span>
-                  )}
+                  <span className="font-mono text-zinc-400 text-[11px]">
+                    Question {activeStep + 1} of {GF_QUESTIONS.length}
+                  </span>
                 </div>
-                <h3 className="text-lg font-serif font-bold text-white leading-snug">
-                  {q.title}
-                </h3>
-                <p className="text-xs text-zinc-400">{q.subtitle}</p>
+
+                <div className="space-y-1">
+                  <h3 className="text-lg sm:text-xl font-serif font-bold text-white leading-snug">
+                    {currentQ.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400">{currentQ.subtitle}</p>
+                </div>
 
                 {/* Option Buttons */}
-                <div className="space-y-2 pt-2">
-                  {q.options.map((opt, idx) => {
+                <div className="space-y-2.5 pt-1">
+                  {currentQ.options.map((opt, idx) => {
                     const isSelected = selectedIdx === idx;
                     return (
                       <button
                         key={idx}
-                        onClick={() => handleSelectOption(q.id, idx)}
-                        className={`w-full text-left p-3 rounded-2xl text-xs font-medium transition-all flex items-start gap-2.5 border ${
+                        onClick={() => handleSelectOption(currentQ.id, idx)}
+                        className={`w-full text-left p-3.5 rounded-2xl text-xs sm:text-sm font-medium transition-all flex items-start gap-3 border ${
                           isSelected
-                            ? "bg-pink-500/20 border-pink-400 text-pink-100 shadow-lg shadow-pink-500/20 scale-[1.01]"
-                            : "bg-white/5 border-white/10 text-zinc-300 hover:bg-white/10 hover:border-pink-500/30"
+                            ? "bg-pink-500/25 border-pink-400 text-pink-100 shadow-lg shadow-pink-500/25 scale-[1.01]"
+                            : "bg-white/5 border-white/10 text-zinc-200 hover:bg-white/10 hover:border-pink-500/30 active:scale-[0.99]"
                         }`}
                       >
-                        <span className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 font-mono text-[10px] text-pink-300 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-white/10 border border-white/15 flex items-center justify-center shrink-0 font-mono text-[11px] text-pink-300 mt-0.5">
                           {String.fromCharCode(65 + idx)}
                         </span>
                         <span className="flex-1 leading-relaxed">{opt.text}</span>
@@ -176,27 +204,54 @@ export default function GfQuestionHub({ onNotify }: GfQuestionHubProps) {
                     );
                   })}
                 </div>
-              </div>
 
-              {/* Dynamic Reveal Box */}
-              {selectedIdx !== undefined && (
-                <div className="mt-4 p-3.5 rounded-2xl bg-pink-950/40 border border-pink-500/30 text-xs space-y-1.5 animate-fadeIn">
-                  <div className="font-mono text-[10px] uppercase font-bold tracking-wider text-pink-300 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-pink-400" /> Laddu&apos;s Designated Response:
-                  </div>
-                  <p className="text-zinc-200 italic font-serif leading-relaxed">
-                    {q.options[selectedIdx].response}
-                  </p>
-                  {q.options[selectedIdx].reaction && (
-                    <p className="text-[11px] text-pink-300/80 font-mono pt-1">
-                      {q.options[selectedIdx].reaction}
+                {/* Dynamic Reveal Box */}
+                {selectedIdx !== undefined && (
+                  <div className="p-3.5 rounded-2xl bg-pink-950/50 border border-pink-500/30 text-xs space-y-1.5 animate-fadeIn">
+                    <div className="font-mono text-[10px] uppercase font-bold tracking-wider text-pink-300 flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-pink-400" /> Laddu&apos;s Designated Response:
+                    </div>
+                    <p className="text-zinc-200 italic font-serif leading-relaxed">
+                      {currentQ.options[selectedIdx].response}
                     </p>
-                  )}
+                    {currentQ.options[selectedIdx].reaction && (
+                      <p className="text-[11px] text-pink-300 font-mono pt-1">
+                        {currentQ.options[selectedIdx].reaction}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Stepper Navigation Buttons */}
+                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs">
+                  <button
+                    onClick={() => {
+                      sound.playClick();
+                      setActiveStep((prev) => Math.max(0, prev - 1));
+                    }}
+                    disabled={activeStep === 0}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 disabled:opacity-30 disabled:cursor-not-allowed transition-all font-mono"
+                  >
+                    ← Previous
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      sound.playClick();
+                      if (activeStep < GF_QUESTIONS.length - 1) {
+                        setActiveStep((prev) => prev + 1);
+                      }
+                    }}
+                    disabled={activeStep === GF_QUESTIONS.length - 1}
+                    className="px-4 py-1.5 rounded-xl bg-pink-500 hover:bg-pink-600 text-white font-mono font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-md shadow-pink-500/30"
+                  >
+                    Next Question →
+                  </button>
                 </div>
-              )}
+              </div>
             </div>
           );
-        })}
+        })()}
       </div>
 
       {/* Interactive GF Features: Boyfriend Vouchers & Secret Whisper Box */}

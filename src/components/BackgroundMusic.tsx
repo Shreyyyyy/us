@@ -199,10 +199,17 @@ export default function BackgroundMusic({ suspended }: BackgroundMusicProps) {
   const pct = progress.duration ? (progress.current / progress.duration) * 100 : 0;
 
   return (
-    <div className="fixed bottom-4 left-4 z-40 w-[calc(100vw-2rem)] max-w-xs font-sans">
-      <div className="relative rounded-3xl border border-pink-500/25 bg-[#140b22]/90 backdrop-blur-2xl shadow-2xl shadow-pink-500/10 overflow-hidden">
-        {/* Embedded player — stays inside the website; shown when expanded */}
-        {/* When collapsed it keeps a real size (browsers throttle 0×0 iframes) but is visually hidden */}
+    <div className="fixed bottom-0 inset-x-0 sm:bottom-4 sm:left-4 sm:right-auto sm:inset-x-auto sm:w-80 z-40 font-sans">
+      <div className="relative border-t sm:border border-pink-500/25 bg-[#0e071a]/95 backdrop-blur-2xl sm:rounded-3xl shadow-2xl shadow-pink-950/60 overflow-hidden">
+        {/* Top 2px thin progress bar for mobile & desktop */}
+        <div className="w-full h-[2.5px] bg-white/10 relative">
+          <div
+            className="h-full bg-gradient-to-r from-pink-500 via-amber-400 to-sky-400 transition-all duration-300"
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+
+        {/* Embedded YouTube Iframe - stays mounted for playback */}
         <div
           className={
             expanded
@@ -215,9 +222,105 @@ export default function BackgroundMusic({ suspended }: BackgroundMusicProps) {
           </div>
         </div>
 
-        <div className="p-3 space-y-2">
+        {/* MOBILE THIN BOTTOM BAR (Ultra-sleek, zero screen obstruction) */}
+        <div className="flex sm:hidden items-center justify-between px-3.5 py-2 gap-2.5">
+          {/* Vinyl Artwork + Info */}
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="relative w-9 h-9 shrink-0 rounded-full overflow-hidden border border-pink-400/50 shadow-md shadow-pink-500/20"
+              aria-label={expanded ? "Hide video" : "Show video"}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://i.ytimg.com/vi/${THEME_SONG.youtubeId}/hqdefault.jpg`}
+                alt=""
+                className={`w-full h-full object-cover scale-150 ${playing ? "animate-spin-slow" : ""}`}
+              />
+              <span className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-[#07050d] border border-white/40" />
+            </button>
+
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5">
+                <p className="text-xs font-serif font-bold text-white truncate leading-tight">
+                  {THEME_SONG.title}
+                </p>
+                {playing && (
+                  <span className="flex items-end gap-[1.5px] h-2.5 shrink-0" aria-hidden>
+                    {[0, 1, 2].map((i) => (
+                      <span
+                        key={i}
+                        className="w-[2px] bg-pink-400 rounded-full animate-eq"
+                        style={{ animationDelay: `${i * 0.15}s` }}
+                      />
+                    ))}
+                  </span>
+                )}
+              </div>
+              <p className="text-[10px] text-zinc-400 truncate leading-none mt-0.5">
+                {THEME_SONG.artist} • {formatTime(progress.current)} / {formatTime(progress.duration)}
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Play & Action Buttons */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              onClick={togglePlay}
+              disabled={!ready}
+              className="w-9 h-9 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 disabled:opacity-40 text-white flex items-center justify-center shadow-lg shadow-pink-500/30 active:scale-95 transition-all"
+              aria-label={playing ? "Pause" : "Play"}
+            >
+              {playing ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
+            </button>
+
+            <button
+              onClick={toggleMute}
+              className="p-2 text-zinc-400 hover:text-white transition-colors"
+              aria-label={muted ? "Unmute" : "Mute"}
+            >
+              {muted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-pink-400" />}
+            </button>
+
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="p-1.5 text-zinc-400 hover:text-white transition-colors"
+              aria-label={expanded ? "Collapse player" : "Expand player"}
+            >
+              <ChevronDown className={`w-4 h-4 transition-transform ${expanded ? "" : "rotate-180"}`} />
+            </button>
+          </div>
+        </div>
+
+        {/* Expanded Controls for Mobile when user taps chevron */}
+        {expanded && (
+          <div className="sm:hidden px-4 pb-3 pt-1 space-y-2 border-t border-white/5 animate-fadeIn">
+            {/* Seek Bar */}
+            <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-400">
+              <span className="w-8 text-right">{formatTime(progress.current)}</span>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                step={0.1}
+                value={pct}
+                onChange={(e) => seek(Number(e.target.value))}
+                className="music-range flex-1"
+                style={{ "--pct": `${pct}%` } as React.CSSProperties}
+                aria-label="Seek"
+              />
+              <span className="w-8">{formatTime(progress.duration)}</span>
+            </div>
+
+            <p className="text-[10px] italic font-serif text-pink-200/80 text-center leading-snug">
+              “{THEME_SONG.annotation}”
+            </p>
+          </div>
+        )}
+
+        {/* DESKTOP FULL CARD VIEW */}
+        <div className="hidden sm:block p-3 space-y-2">
           <div className="flex items-center gap-3">
-            {/* Spinning vinyl with thumbnail */}
             <button
               onClick={() => setExpanded((x) => !x)}
               className="relative w-12 h-12 shrink-0 rounded-full overflow-hidden border-2 border-pink-400/40 shadow-lg shadow-pink-500/30"
