@@ -14,8 +14,8 @@ interface HarryPotterStageProps {
 export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStageProps) {
   const [bubbleText, setBubbleText] = useState(
     role === "gf"
-      ? "“Accio hugs & 100% undivided Shrey attention! 🪄”"
-      : "“Accio Paneer, Diet Coke & Divija's laughter! 🧀”"
+      ? "“Infinite warm hugs & 100% undivided Laddu attention! 🪄”"
+      : "“Fresh Paneer, sweet tea & Jalebi's bright laughter! 🧀”"
   );
   const [sparkleActive, setSparkleActive] = useState<"shrey" | "divija" | null>(null);
 
@@ -32,10 +32,10 @@ export default function HarryPotterStage({ role, onCastSpell }: HarryPotterStage
     });
 
     const msgs = [
-      "⚡ Lumos Maxima! Divija's smile illuminating all neural networks at 100% ✨",
-      "⚡ Expecto Patronum! Silver stag deployed to guard Divija against overthinking 🦌",
-      "⚡ Accio Paneer! Fueling Shrey for the next 14 hours of coding 🧀",
-      "⚡ Alohomora! Unlocking 100% access to Shrey's heart permanently 💖",
+      "⚡ Lumos Maxima! Jalebi's smile illuminating all neural networks at 100% ✨",
+      "⚡ Expecto Patronum! Silver stag deployed to guard Jalebi against overthinking 🦌",
+      "⚡ Paneer Power-Up! Fueling Laddu for the next 14 hours of coding 🧀",
+      "⚡ Alohomora! Unlocking 100% access to Laddu's heart permanently 💖",
     ];
     const picked = msgs[Math.floor(Math.random() * msgs.length)];
     setBubbleText("“Lumos! Love weights locked forever!”");
