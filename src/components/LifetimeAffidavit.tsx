@@ -182,8 +182,6 @@ export default function LifetimeAffidavit() {
     if (!documentRef.current) return;
     setIsGeneratingPdf(true);
 
-    let clone: HTMLElement | null = null;
-
     try {
       const { jsPDF } = await import("jspdf");
       const html2canvas = (await import("html2canvas")).default;
@@ -194,72 +192,12 @@ export default function LifetimeAffidavit() {
       if (!shreySigned) paintDefaultSignature("shrey");
       if (!divijaSigned) paintDefaultSignature("divija");
 
-      // Clone element so we render a perfect 1-sheet legal layout at standard width (780px)
-      // regardless of whether user is on a phone, tablet, or desktop screen!
-      clone = element.cloneNode(true) as HTMLElement;
-
-      // Duplicate canvas signature buffers from original to clone
-      const origCanvases = element.querySelectorAll("canvas");
-      const cloneCanvases = clone.querySelectorAll("canvas");
-      origCanvases.forEach((orig, idx) => {
-        const target = cloneCanvases[idx];
-        if (target) {
-          target.width = orig.width;
-          target.height = orig.height;
-          const ctx = target.getContext("2d");
-          if (ctx) {
-            ctx.drawImage(orig, 0, 0);
-          }
-        }
-      });
-
-      // Style clone to fixed legal document dimensions (780px width)
-      clone.style.width = "780px";
-      clone.style.maxWidth = "780px";
-      clone.style.position = "fixed";
-      clone.style.left = "-9999px";
-      clone.style.top = "0";
-      clone.style.margin = "0";
-      clone.style.zIndex = "-9999";
-      clone.style.background = "#fdfbf7";
-      clone.style.padding = "24px 28px";
-      clone.style.boxSizing = "border-box";
-
-      // Ensure multi-column elements are side-by-side in clone
-      const sigGrids = clone.querySelectorAll(".sig-grid");
-      sigGrids.forEach((el) => {
-        const h = el as HTMLElement;
-        h.style.display = "grid";
-        h.style.gridTemplateColumns = "1fr 1fr";
-        h.style.gap = "1.25rem";
-      });
-
-      const stampRows = clone.querySelectorAll(".stamp-row");
-      stampRows.forEach((el) => {
-        const h = el as HTMLElement;
-        h.style.display = "flex";
-        h.style.flexDirection = "row";
-        h.style.justifyContent = "space-between";
-        h.style.alignItems = "center";
-      });
-
-      const stampGrids = clone.querySelectorAll(".stamp-grid-info");
-      stampGrids.forEach((el) => {
-        const h = el as HTMLElement;
-        h.style.display = "grid";
-        h.style.gridTemplateColumns = "repeat(4, 1fr)";
-        h.style.gap = "0.5rem";
-      });
-
-      document.body.appendChild(clone);
-
-      const canvas = await html2canvas(clone, {
+      // Capture visible element directly in DOM
+      const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
         backgroundColor: "#fdfbf7",
         logging: false,
-        width: 780,
-        windowWidth: 1024,
         ignoreElements: (el) => {
           return el.getAttribute("data-pdf-ignore") === "true";
         },
@@ -310,11 +248,8 @@ export default function LifetimeAffidavit() {
       });
     } catch (err) {
       console.error("PDF generation failed:", err);
-      window.print();
+      alert("PDF generation encountered an error. Please try again!");
     } finally {
-      if (clone && clone.parentNode) {
-        clone.parentNode.removeChild(clone);
-      }
       setIsGeneratingPdf(false);
     }
   };
@@ -365,7 +300,7 @@ export default function LifetimeAffidavit() {
       </div>
 
       {/* Main Legal Document Card */}
-      <div ref={documentRef} className="relative rounded-3xl p-3.5 sm:p-10 border-2 sm:border-4 border-amber-600/40 bg-[#fdfbf7] text-zinc-900 shadow-2xl shadow-amber-950/40 overflow-hidden font-serif">
+      <div ref={documentRef} id="contract-deed-sheet" className="relative rounded-3xl p-3.5 sm:p-10 border-2 sm:border-4 border-amber-600/40 bg-[#fdfbf7] text-zinc-900 shadow-2xl shadow-amber-950/40 overflow-hidden font-serif">
         {/* Subtle Guilloche & Legal Watermark */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center select-none text-5xl sm:text-9xl font-bold font-mono">
           🦚 SHREY × DIVIJA 🦚

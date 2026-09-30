@@ -161,18 +161,50 @@
 
 /* Legal Document Print Styles */
 @media print {
-  body {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+
+  html, body {
     background: #ffffff !important;
     color: #111827 !important;
-  }
-
-  header, footer, nav, #music-dock, .no-print, [data-pdf-ignore="true"] {
-    display: none !important;
-  }
-
-  #contract {
-    padding: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* Hide the rest of the application completely */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Make ONLY the legal contract sheet and its content visible */
+  #contract-deed-sheet,
+  #contract-deed-sheet * {
+    visibility: visible !important;
+  }
+
+  #contract-deed-sheet {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
     max-width: 100% !important;
+    margin: 0 !important;
+    padding: 18px !important;
+    background: #fdfbf7 !important;
+    border: 2px solid #b45309 !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Strictly hide web buttons and interactive helpers during print */
+  [data-pdf-ignore="true"],
+  [data-pdf-ignore="true"] * {
+    display: none !important;
+    visibility: hidden !important;
   }
 }
