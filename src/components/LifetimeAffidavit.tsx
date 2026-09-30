@@ -182,17 +182,84 @@ export default function LifetimeAffidavit() {
     if (!documentRef.current) return;
     setIsGeneratingPdf(true);
 
+    let clone: HTMLElement | null = null;
+
     try {
       const { jsPDF } = await import("jspdf");
       const html2canvas = (await import("html2canvas")).default;
 
       const element = documentRef.current;
 
-      const canvas = await html2canvas(element, {
+      // Ensure default signatures are placed if blank
+      if (!shreySigned) paintDefaultSignature("shrey");
+      if (!divijaSigned) paintDefaultSignature("divija");
+
+      // Clone element so we render a perfect 1-sheet legal layout at standard width (780px)
+      // regardless of whether user is on a phone, tablet, or desktop screen!
+      clone = element.cloneNode(true) as HTMLElement;
+
+      // Duplicate canvas signature buffers from original to clone
+      const origCanvases = element.querySelectorAll("canvas");
+      const cloneCanvases = clone.querySelectorAll("canvas");
+      origCanvases.forEach((orig, idx) => {
+        const target = cloneCanvases[idx];
+        if (target) {
+          target.width = orig.width;
+          target.height = orig.height;
+          const ctx = target.getContext("2d");
+          if (ctx) {
+            ctx.drawImage(orig, 0, 0);
+          }
+        }
+      });
+
+      // Style clone to fixed legal document dimensions (780px width)
+      clone.style.width = "780px";
+      clone.style.maxWidth = "780px";
+      clone.style.position = "fixed";
+      clone.style.left = "-9999px";
+      clone.style.top = "0";
+      clone.style.margin = "0";
+      clone.style.zIndex = "-9999";
+      clone.style.background = "#fdfbf7";
+      clone.style.padding = "24px 28px";
+      clone.style.boxSizing = "border-box";
+
+      // Ensure multi-column elements are side-by-side in clone
+      const sigGrids = clone.querySelectorAll(".sig-grid");
+      sigGrids.forEach((el) => {
+        const h = el as HTMLElement;
+        h.style.display = "grid";
+        h.style.gridTemplateColumns = "1fr 1fr";
+        h.style.gap = "1.25rem";
+      });
+
+      const stampRows = clone.querySelectorAll(".stamp-row");
+      stampRows.forEach((el) => {
+        const h = el as HTMLElement;
+        h.style.display = "flex";
+        h.style.flexDirection = "row";
+        h.style.justifyContent = "space-between";
+        h.style.alignItems = "center";
+      });
+
+      const stampGrids = clone.querySelectorAll(".stamp-grid-info");
+      stampGrids.forEach((el) => {
+        const h = el as HTMLElement;
+        h.style.display = "grid";
+        h.style.gridTemplateColumns = "repeat(4, 1fr)";
+        h.style.gap = "0.5rem";
+      });
+
+      document.body.appendChild(clone);
+
+      const canvas = await html2canvas(clone, {
         scale: 2,
         useCORS: true,
         backgroundColor: "#fdfbf7",
         logging: false,
+        width: 780,
+        windowWidth: 1024,
         ignoreElements: (el) => {
           return el.getAttribute("data-pdf-ignore") === "true";
         },
@@ -200,33 +267,39 @@ export default function LifetimeAffidavit() {
 
       const imgData = canvas.toDataURL("image/jpeg", 0.95);
 
+      // Create strictly a 1-page A4 PDF document (1 single sheet!)
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
         format: "a4",
       });
 
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
+      const pageWidth = pdf.internal.pageSize.getWidth(); // 210mm
+      const pageHeight = pdf.internal.pageSize.getHeight(); // 297mm
 
-      const margin = 10;
-      const contentWidth = pageWidth - margin * 2;
-      const contentHeight = (canvas.height * contentWidth) / canvas.width;
+      const margin = 8;
+      const maxW = pageWidth - margin * 2; // 194mm
+      const maxH = pageHeight - margin * 2; // 281mm
 
-      let heightLeft = contentHeight;
-      let position = margin;
+      const imgRatio = canvas.width / canvas.height;
 
-      pdf.addImage(imgData, "JPEG", margin, position, contentWidth, contentHeight, undefined, "FAST");
-      heightLeft -= (pageHeight - margin * 2);
+      let renderW = maxW;
+      let renderH = maxW / imgRatio;
 
-      while (heightLeft > 0) {
-        position = heightLeft - contentHeight + margin;
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", margin, position, contentWidth, contentHeight, undefined, "FAST");
-        heightLeft -= (pageHeight - margin * 2);
+      // Guarantee strict fit onto this single sheet without extra pages
+      if (renderH > maxH) {
+        renderH = maxH;
+        renderW = maxH * imgRatio;
       }
 
-      pdf.save(`Lifetime-Affidavit-Laddu-Jalebi-${new Date().getFullYear()}.pdf`);
+      // Center horizontally and vertically on the single sheet
+      const xPos = margin + (maxW - renderW) / 2;
+      const yPos = margin + (maxH - renderH) / 2;
+
+      // Exactly ONE image add call, zero addPage calls (strictly 1 sheet)
+      pdf.addImage(imgData, "JPEG", xPos, yPos, renderW, renderH, undefined, "FAST");
+
+      pdf.save("Lifetime-Affidavit-Laddu-Jalebi-2026.pdf");
 
       sound.playSuccess();
       confetti({
@@ -239,6 +312,9 @@ export default function LifetimeAffidavit() {
       console.error("PDF generation failed:", err);
       window.print();
     } finally {
+      if (clone && clone.parentNode) {
+        clone.parentNode.removeChild(clone);
+      }
       setIsGeneratingPdf(false);
     }
   };
@@ -297,7 +373,7 @@ export default function LifetimeAffidavit() {
 
         {/* Indian Non-Judicial E-Stamp Header */}
         <div className="border-2 sm:border-4 border-emerald-900/60 rounded-2xl p-3 sm:p-6 mb-6 sm:mb-8 bg-[#f5fbf7] relative">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-b border-emerald-900/30 pb-3 sm:pb-4 text-center sm:text-left">
+          <div className="stamp-row flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-b border-emerald-900/30 pb-3 sm:pb-4 text-center sm:text-left">
             <div className="flex items-center gap-2.5 sm:gap-3">
               <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full border-2 border-emerald-900 flex items-center justify-center text-2xl sm:text-3xl font-serif bg-emerald-100 shadow-inner shrink-0">
                 🦚
@@ -323,7 +399,7 @@ export default function LifetimeAffidavit() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 font-mono text-[10px] text-emerald-900 text-left">
+          <div className="stamp-grid-info grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 font-mono text-[10px] text-emerald-900 text-left">
             <div>
               <span className="text-emerald-700 block text-[9px]">First Party:</span>
               <strong className="text-xs">Shrey (Laddu)</strong>
@@ -387,7 +463,7 @@ export default function LifetimeAffidavit() {
         </div>
 
         {/* Dual Signature Section */}
-        <div className="mt-8 pt-6 border-t-2 border-dashed border-zinc-400 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="sig-grid mt-8 pt-6 border-t-2 border-dashed border-zinc-400 grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Shrey Signature Box */}
           <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-300 space-y-2">
             <div className="flex items-center justify-between text-xs font-mono text-zinc-700">
