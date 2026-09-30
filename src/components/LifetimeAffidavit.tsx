@@ -184,7 +184,7 @@ export default function LifetimeAffidavit() {
 
     try {
       const { jsPDF } = await import("jspdf");
-      const html2canvas = (await import("html2canvas")).default;
+      const html2canvas = (await import("html2canvas-pro")).default;
 
       const element = documentRef.current;
 
@@ -205,39 +205,33 @@ export default function LifetimeAffidavit() {
 
       const imgData = canvas.toDataURL("image/jpeg", 0.95);
 
-      // Create strictly a 1-page A4 PDF document (1 single sheet!)
+      // Custom 1-sheet dimension matching the contract deed aspect ratio exactly
+      // 1px = 0.264583 mm (divide by scale 2)
+      const pdfWidth = Math.max(140, Math.round((canvas.width / 2) * 0.264583));
+      const pdfHeight = Math.round((canvas.height / 2) * 0.264583);
+
       const pdf = new jsPDF({
-        orientation: "portrait",
+        orientation: pdfWidth > pdfHeight ? "landscape" : "portrait",
         unit: "mm",
-        format: "a4",
+        format: [pdfWidth, pdfHeight],
       });
 
-      const pageWidth = pdf.internal.pageSize.getWidth(); // 210mm
-      const pageHeight = pdf.internal.pageSize.getHeight(); // 297mm
-
-      const margin = 8;
-      const maxW = pageWidth - margin * 2; // 194mm
-      const maxH = pageHeight - margin * 2; // 281mm
-
-      const imgRatio = canvas.width / canvas.height;
-
-      let renderW = maxW;
-      let renderH = maxW / imgRatio;
-
-      // Guarantee strict fit onto this single sheet without extra pages
-      if (renderH > maxH) {
-        renderH = maxH;
-        renderW = maxH * imgRatio;
-      }
-
-      // Center horizontally and vertically on the single sheet
-      const xPos = margin + (maxW - renderW) / 2;
-      const yPos = margin + (maxH - renderH) / 2;
-
       // Exactly ONE image add call, zero addPage calls (strictly 1 sheet)
-      pdf.addImage(imgData, "JPEG", xPos, yPos, renderW, renderH, undefined, "FAST");
+      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight, undefined, "FAST");
 
-      pdf.save("Lifetime-Affidavit-Laddu-Jalebi-2026.pdf");
+      // Robust cross-browser and mobile download handler
+      const blob = pdf.output("blob");
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "Lifetime-Affidavit-Laddu-Jalebi-2026.pdf";
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => {
+        if (link.parentNode) link.parentNode.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      }, 2000);
 
       sound.playSuccess();
       confetti({
